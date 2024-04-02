@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <div class="layout-wrapper layout-content-navbar">
+        <div class="layout-container">
+            <app-sidebar-back></app-sidebar-back>
+            <div class="layout-page">
+                <app-navbar-back></app-navbar-back>
+                <div class="form-container">
+                    <h2>Add Question</h2>
+                    <form [formGroup]="questionForm" (ngSubmit)="addQuestion()">
+                        <div class="form-group">
+                            <label for="charQ">Choose Lettre</label>
+                            <select formControlName="charQ" id="charQ" class="form-control">
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <!-- Ajoutez d'autres options si nécessaire -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Question text:</label>
+                            <input type="text" formControlName="textQ" class="form-control">
+                            <!-- Afficher un message d'erreur si le texte de la question ne se termine pas par un point d'interrogation (?) -->
+                            <div *ngIf="questionForm.get('textQ')?.errors?.['questionNotEndingWithQuestionMark']" class="text-danger">
+                                The question must end with a question mark (?).
+                            </div>
+                            <div *ngIf="questionForm.get('textQ')?.errors?.['minlength']" class="text-danger">
+                                The question must be at least 10 characters long.
+                            </div>
+                            <div *ngIf="questionForm.get('textQ')?.errors?.['maxlength']" class="text-danger">
+                                The question cannot exceed 100 characters.
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="quizSelect">Select Quiz:</label>
+                            <select id="quizSelect" formControlName="selectedQuiz" class="form-control">
+                                <option *ngFor="let quiz of quizzes" [ngValue]="quiz">{{ quiz.titleQuiz }}</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-success">Add</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-footer-back></app-footer-back>
+
+</html>

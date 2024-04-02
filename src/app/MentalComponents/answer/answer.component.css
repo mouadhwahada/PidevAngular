@@ -1,0 +1,100 @@
+.layout-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.layout-container {
+    display: flex;
+    flex-grow: 1; /* Permet au conteneur de s'étendre pour remplir l'espace disponible */
+}
+
+.layout-page {
+    flex-grow: 1; /* Permet au contenu de remplir l'espace disponible */
+}
+
+.app-navbar-back {
+    /* Styles pour positionner le composant navbar en haut de son conteneur parent */
+    order: -1; /* Pour placer le composant navbar en premier dans l'ordre d'affichage */
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Assure que le navbar reste au-dessus des autres éléments */
+    background-color: #fff; /* Vous pouvez ajuster la couleur selon votre design */
+    width: 100%; /* Assure que le navbar occupe toute la largeur */
+}
+.app-footer-back {
+    /* Styles pour positionner le composant footer en bas de la page */
+    position: absolute;
+    bottom: 0;
+}
+.list {
+  margin: 50px; 
+  margin-top: 300px;
+  
+}
+
+.mat-table {
+  font-size: 12px; /* Taille de police du texte dans le tableau */
+}
+
+.mat-cell,
+.mat-header-cell {
+  padding: 8px; /* Espace interne des cellules du tableau */
+}
+
+.data-table-answer{
+  margin-right: 400px;
+  margin-bottom: 400px;
+}
+h2{
+  margin-left: 200px;
+  margin-top: 50px;
+  margin-bottom: 100px;
+}
+table {
+  width: 70%; /* Définissez la largeur maximale souhaitée */
+  border-collapse: collapse;
+  margin-left: 300px; /* Définissez la marge gauche sur auto pour centrer le tableau horizontalement */ 
+  margin-top: 0; /* Assurez-vous que le tableau est aligné en haut de la page */
+}
+
+th, td {
+  border: 1px solid #dddddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+.button-container {
+  text-align: right; 
+  margin-right: 100px;
+}
+
+.button-container {
+  text-align: right; /* Alignement du texte à droite */
+  margin-bottom: 20px; /* Espacement en bas du bouton */
+}
+
+.button-container button {
+  background-color: #28a745; /* Utilisation de la même couleur de fond que le bouton du formulaire */
+  color: #fff; /* Couleur du texte du bouton */
+  border: none; /* Supprimer la bordure */
+  padding: 10px 20px; /* Espacement interne du bouton */
+  border-radius: 5px; /* Coins arrondis */
+  cursor: pointer; /* Curseur pointeur au survol */
+  transition: background-color 0.3s ease; /* Transition fluide de la couleur de fond */
+  
+}
+
+.button-container button:hover {
+  background-color: #218838; /* Légèrement plus foncé au survol pour indiquer l'interaction */
+}
+.search-field{
+  margin-left: 300px;
+  
+}

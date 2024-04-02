@@ -1,0 +1,55 @@
+
+<link rel="stylesheet" href="/assets/BackOfficeAssets/css/bootstrap.min.css">
+<link rel="stylesheet" href="/assets/BackOfficeAssets/css/bootstrap.min.css.map">
+<link rel="stylesheet" href="/assets/BackOfficeAssets/css/now-ui-dashboard.css">
+<link rel="stylesheet" href="/assets/BackOfficeAssets/css/now-ui-dashboard.css.map">
+<link rel="stylesheet" href="/assets/BackOfficeAssets/css/now-ui-dashboard.min.css">
+<script src="/assets/BackOfficeAssets/js/now-ui-dashboard.js"></script>
+<script src="/assets/BackOfficeAssets/js/now-ui-dashboard.js.map"></script>
+<script src="/assets/BackOfficeAssets/js/now-ui-dashboard.min.js"></script>
+<script src="/assets/BackOfficeAssets/js/core/bootstrap.min.js"></script>
+<script src="/assets/BackOfficeAssets/js/core/jquery.min.js"></script>
+<script src="/assets/BackOfficeAssets/js/core/popper.min.js"></script>
+<script src="/assets/BackOfficeAssets/js/plugins/bootstrap-notify.js"></script>
+<script src="/assets/BackOfficeAssets/js/plugins/chartjs.min.js"></script>
+<script src="/assets/BackOfficeAssets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+<div class="layout-wrapper layout-content-navbar">
+    <div class ="layout-container">
+        <app-sidebar-back></app-sidebar-back>
+        <div class="layout-page">
+            <app-navbar-back></app-navbar-back>
+            <app-footer-back></app-footer-back>
+        </div>
+    </div>
+    
+</div>
+<style>
+    .layout-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.layout-container {
+    display: flex;
+    flex-grow: 1; /* Permet au conteneur de s'étendre pour remplir l'espace disponible */
+}
+
+.layout-page {
+    flex-grow: 1; /* Permet au contenu de remplir l'espace disponible */
+}
+
+.app-navbar-back {
+    /* Styles pour positionner le composant navbar en haut de son conteneur parent */
+    order: -1; /* Pour placer le composant navbar en premier dans l'ordre d'affichage */
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Assure que le navbar reste au-dessus des autres éléments */
+    background-color: #fff; /* Vous pouvez ajuster la couleur selon votre design */
+    width: 100%; /* Assure que le navbar occupe toute la largeur */
+}
+.app-footer-back {
+    /* Styles pour positionner le composant footer en bas de la page */
+    position: absolute;
+    bottom: 0;
+}
+</style>

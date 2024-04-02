@@ -1,0 +1,53 @@
+.background-image {
+    margin-top: 100px;
+    background-image: url('/assets/ww.jpg');
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100vh; /* 100% de la hauteur de la fenêtre */
+    display: flex;
+    align-items: center; /* Aligner le contenu verticalement */
+    justify-content: flex-end; /* Aligner le contenu à droite */
+}
+
+.content {
+    max-width: 60%; /* Limiter la largeur du contenu */
+    padding: 20px;
+    color: #333333; /* Couleur du texte */
+}
+
+.notification-text {
+    margin-right: 200px;
+    margin-bottom: 20px; /* Marge en bas du texte */
+    text-align: right; /* Aligner le texte à droite */
+    font-family: 'Brush Script MT', cursive;
+    font-size: 35px;
+}
+
+
+.notification-bar {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    background-color:#333333;
+    width: 50px;
+    height: 65px;
+    border-left: 1px solid #dddddd;
+     
+  }
+  
+  .notification-button {
+    margin-top: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 50px;
+    border: none;
+    background-color: #333333;
+    cursor: pointer;
+    outline: none;
+  }
+
+

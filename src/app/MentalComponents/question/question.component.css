@@ -1,0 +1,141 @@
+.layout-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.layout-container {
+    display: flex;
+    flex-grow: 1; /* Permet au conteneur de s'étendre pour remplir l'espace disponible */
+}
+
+.layout-page {
+    flex-grow: 1; /* Permet au contenu de remplir l'espace disponible */
+}
+
+.app-navbar-back {
+    /* Styles pour positionner le composant navbar en haut de son conteneur parent */
+    order: -1; /* Pour placer le composant navbar en premier dans l'ordre d'affichage */
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Assure que le navbar reste au-dessus des autres éléments */
+    background-color: #fff; /* Vous pouvez ajuster la couleur selon votre design */
+    width: 100%; /* Assure que le navbar occupe toute la largeur */
+}
+.app-footer-back {
+    /* Styles pour positionner le composant footer en bas de la page */
+    position: absolute;
+    bottom: 0;
+}
+.list{
+  margin-top: 270px;
+  margin-left: 100px;
+  margin-bottom: 300px;
+
+}
+.data-table-question{
+  margin-right: 400px;
+  margin-bottom: 400px;
+}
+h2{
+  margin-left: 700px;
+  margin-top: 50px;
+}
+table {
+  width: 70%; /* Définissez la largeur maximale souhaitée */
+  border-collapse: collapse;
+  margin-left: 300px; /* Définissez la marge gauche sur auto pour centrer le tableau horizontalement */ 
+  margin-top: 0; /* Assurez-vous que le tableau est aligné en haut de la page */
+}
+i{
+  margin-right: 10px;
+}
+
+th, td {
+  border: 1px solid #dddddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+.button-container {
+  text-align: right; /* Alignement du texte à droite */
+  margin-bottom: 20px; /* Espacement en bas du bouton */
+  margin-right: 150px;
+}
+
+.button-container {
+  text-align: right; /* Alignement du texte à droite */
+  margin-bottom: 20px; /* Espacement en bas du bouton */
+}
+
+.button-container button {
+  background-color: #28a745; /* Utilisation de la même couleur de fond que le bouton du formulaire */
+  color: #fff; /* Couleur du texte du bouton */
+  border: none; /* Supprimer la bordure */
+  padding: 10px 20px; /* Espacement interne du bouton */
+  border-radius: 5px; /* Coins arrondis */
+  cursor: pointer; /* Curseur pointeur au survol */
+  transition: background-color 0.3s ease; /* Transition fluide de la couleur de fond */
+}
+
+.button-container button:hover {
+  background-color: #218838; /* Légèrement plus foncé au survol pour indiquer l'interaction */
+}
+
+
+.search-field{
+  margin-left: 300px;
+  
+}
+
+/* Contenu du modal */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* Centrer verticalement et horizontalement */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Largeur du contenu du modal */
+}
+
+
+.modal {
+  display: none; /* Par défaut, le modal est caché */
+  position: fixed; /* Position fixe pour le modal */
+  left: 0;
+  top: 0;
+  width: 100%; /* Couvre toute la largeur de l'écran */
+  height: 100%; /* Couvre toute la hauteur de l'écran */
+  overflow: auto; /* Permet le défilement lorsque le contenu est trop grand */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Couleur avec transparence */
+  z-index: 1050; /* ou toute autre valeur que vous préférez */
+}
+/* Styles for the modal header */
+.custom-modal-header {
+  background-color: #f0f0f0;
+  color: #333;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Styles for the modal body */
+.custom-modal-body {
+  padding: 20px;
+}
+
+/* Styles for the modal footer */
+.custom-modal-footer {
+  background-color: #f0f0f0;
+  border-top: 1px solid #ccc;
+}
+
+/* Additional custom styles */
+.custom-modal-content {
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}

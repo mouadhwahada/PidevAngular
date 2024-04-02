@@ -1,0 +1,182 @@
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+
+<app-nav-bar-front></app-nav-bar-front>
+<div class="list">
+    
+    <div class="custom-search-container">
+        <p class="search-instruction">Type here to search quizzes</p>
+        <input type="text" class="search-input" placeholder="Search quiz          🔍" [(ngModel)]="searchTerm" (input)="onSearchTermChange()">
+        
+    </div>
+    
+  
+    <div class="card-container justify-content-center align-items-center">
+        <div class="card" *ngFor="let quiz of pagedQuizzes" [ngStyle]="{'background-color': getCardColor(quiz.topicQuiz.toString())}">
+          <div class="card-body text-center">
+            <h5 class="card-title">{{ quiz.titleQuiz }}</h5>
+            <p class="card-text">Topic: {{ quiz.topicQuiz }}</p>
+            <div class="button-container d-flex justify-content-center">
+                <button type="button" class="btn btn-preview-quiz" (click)="previewQuiz(quiz)">
+                  <i class="material-icons mr-2">visibility</i> Preview Quiz
+                </button>
+                <button type="button" class="btn btn-start-quiz" (click)="openQuiz(); showQuizDetails(quiz)">
+                  <i class="material-icons mr-2">play_circle_filled</i> Start Quiz
+                </button>
+              </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="pag-container text-center">
+        <mat-paginator [length]="filteredQuizzes.length"
+                       [pageSize]="pageSize"
+                       [pageSizeOptions]="pageSizeOptions"
+                       (page)="onPageChange($event)">
+        </mat-paginator>
+    </div>
+  </div>
+  
+
+<app-footer-front></app-footer-front>
+
+<!-- Modal -->
+<div class="modal" id="quizModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content custom-modal-content">
+        <div class="modal-header custom-modal-header">
+          <h5 class="modal-title">{{ selectedQuiz?.titleQuiz }}</h5>
+        
+  <button type="button" class="close custom-close-button" data-dismiss="modal" aria-label="Close" (click)="closeQuizModal()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  
+        </div>
+        <div class="modal-body custom-modal-body">
+         
+          <p *ngIf="showCountdown" class="starting-text" >The quiz is starting... </p>
+          <div *ngIf="showCountdown" class="countdown">
+            <h1 *ngIf="countdownNumber === 3">3</h1>
+            <h1 *ngIf="countdownNumber === 2">2</h1>
+            <h1 *ngIf="countdownNumber === 1">1</h1>
+            <h1 *ngIf="countdownNumber === 0" class="go">Go</h1>
+          </div>
+          
+        
+          <div *ngIf="!showCountdown && !showResultFlag">
+            <ng-container *ngIf="selectedQuiz">
+              <p>{{questionsWithAnswers[currentQuestionIndex].charQ}}-{{ questionsWithAnswers[currentQuestionIndex].textQ }}</p>
+              <div class="answer-container">
+                <div *ngFor="let answer of questionsWithAnswers[currentQuestionIndex].answerList"
+                     class="answer-box"
+                     [class.selected]="selectedAnswerId === answer.idAnswer" 
+                     (click)="selectAnswer(answer.idAnswer)">
+                  {{ answer.textAnswer }}
+                </div>
+              </div>
+              <div class="mt-2">
+                <button type="button" class="btnn btn-primaryy mr-2" (click)="previousQuestion()" *ngIf="currentQuestionIndex !== 0">Back</button>
+                <button type="button" class="btnn btn-primaryyy" (click)="nextQuestion()" *ngIf="currentQuestionIndex !== questionsWithAnswers.length - 1">Next</button>
+              </div>
+            </ng-container>
+          </div>
+          
+     
+          <div *ngIf="showLoading">
+            <div class="loading-overlay">
+              <div class="loading-container">
+                <div class="spinner-border text-primary" role="status">
+                  <span class="sr-only"></span>
+                </div>
+                <p>Please wait for the Result</p>
+              </div>
+            </div>
+          </div>
+          
+          
+          <div *ngIf="!showLoading && showResultFlag" class="result-container">
+          
+            <h3 class="result-heading">Quiz Result</h3>
+            <p class="result-text">Your level of <span class="topic">{{selectedQuiz?.topicQuiz}}</span> is <span class="result-score">{{ quizScore }}%</span></p>
+            <p class="result-description">{{ scoreDescription }}</p>
+            
+            <div class="rating-container">
+                <ng-container *ngIf="userRating === null">
+                    <p>Do you want to rate this quiz?</p>
+                    <div class="star-container">
+                        <button *ngFor="let i of [1, 2, 3, 4, 5]" class="star" (click)="setUserRating(i)">
+                            <span class="star-icon" [class.filled]="i <= userRating! || 0" [style.color]="getStarColor(i)">&#9733;</span>
+                        </button>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="userRating !== null">
+                    <p class ="result-score">Thank you for your rating !</p>
+                    <div class="star-container">
+                        <span class="star-icon" [class.filled]="i <= userRating!" *ngFor="let i of [1, 2, 3, 4, 5]" [style.color]="getStarColor(i)">&#9733;</span>
+                    </div>
+                </ng-container>
+            </div>
+            
+        <br>
+
+    <button type="button" class="btn-start-quiz" (click)="retakeQuiz()">Retake</button>
+
+          </div>
+        </div>
+        <div class="modal-footer custom-modal-footer">
+          <div class="d-flex justify-content-between w-100">
+            <div *ngIf="!showResultFlag && !showCountdown" id="xofy">
+              <strong>{{ currentQuestionIndex + 1 }}</strong> of <strong>{{ questionsWithAnswers.length }}</strong> Questions
+            </div>
+            <button *ngIf="isLastQuestion() && !showResultFlag && !showCountdown" type="button" class="btnn btn-successs ml-2" (click)="showResult()">View Result</button> 
+          </div>
+
+
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<!-- Modal de prévisualisation -->
+<div class="modal" id="previewModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Preview Quiz</h5>
+          <button type="button" class="close custom-close-button" aria-label="Close" (click)="closePreviewModal()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- Contenu de l'aperçu du quiz -->
+          <ng-container *ngIf="selectedQuiz!">
+            <p>{{ selectedQuiz.titleQuiz }}</p>
+            <h4>Questions:</h4>
+            <div *ngFor="let question of questionsWithAnswers">
+              <p>{{ question.charQ }}-{{ question.textQ }}</p>
+              <ul>
+                <li *ngFor="let answer of question.answerList">{{ answer.textAnswer }}</li>
+              </ul>
+            </div>
+          </ng-container>
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closePreviewModal()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

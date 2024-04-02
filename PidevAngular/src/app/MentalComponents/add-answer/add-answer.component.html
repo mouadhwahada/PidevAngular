@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <div class="layout-wrapper layout-content-navbar">
+        <div class="layout-container">
+            <app-sidebar-back></app-sidebar-back>
+            <div class="layout-page">
+                <app-navbar-back></app-navbar-back>
+                <div class="form-container">
+<h2>Add Answer</h2>
+<form [formGroup]="answerForm" (ngSubmit)="addAnswer()">
+    <div class="form-group">
+        <label>Score:</label>
+        <input type="number" formControlName="score" class="form-control">
+        <div *ngIf="answerForm.get('score')?.invalid && (answerForm.get('score')?.dirty || answerForm.get('score')?.touched)" class="text-danger">
+          <!-- Display error message for invalid score -->
+          Score must be a float value between 0 and 100.
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Text Answer:</label>
+        <input type="text" formControlName="textAnswer" class="form-control">
+        <div *ngIf="answerForm.get('textAnswer')?.invalid && (answerForm.get('textAnswer')?.dirty || answerForm.get('textAnswer')?.touched)" class="text-danger">
+          <!-- Display error message for invalid text answer -->
+          Text answer must be between 10 and 100 characters.
+        </div>
+        <div class="form-group">
+            <label>Select Question:</label>
+            <select formControlName="selectedQuestion" class="form-control">
+              <option *ngFor="let question of questions" [value]="question.textQ">{{ question.textQ }}</option>
+            </select>
+          </div>
+      </div>
+  <button type="submit" class="btn btn-success">Add</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+<app-footer-back></app-footer-back>
+</html>

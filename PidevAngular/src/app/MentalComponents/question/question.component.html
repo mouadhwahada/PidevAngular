@@ -1,0 +1,42 @@
+<div class="layout-wrapper layout-content-navbar">
+  <div class="layout-container">
+    <app-sidebar-back></app-sidebar-back>
+    <div class="layout-page">
+      <app-navbar-back></app-navbar-back>
+
+      <h2>List of questions</h2>
+      <div class="button-container">
+        <button type="button" [routerLink]="['/addQuestion']" class="btn btn-success">
+          <i class="fas fa-plus"></i> <!-- Icône d'ajout -->
+          Add Question
+        </button>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Lettre</th>
+            <th>Question text</th>
+            <th>Quiz</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let question of questions">
+            <td>{{ question.charQ }}</td>
+            <td>{{ question.textQ }}</td>
+            <td>{{ question.quiz?.titleQuiz }}</td> <!-- Display the title of the quiz -->
+            <td>
+              <button class="btn btn-primary" [routerLink]="['/updateQuestion', question.idQuestion]">
+                <i class="fa fa-edit fa-lg"></i> Edit
+              </button>
+              <button class="btn btn-danger" (click)="deleteQuestion(question)">
+                <i class="fa fa-trash fa-lg"></i> Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<app-footer-back></app-footer-back>

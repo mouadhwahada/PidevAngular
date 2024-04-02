@@ -1,0 +1,28 @@
+.question-details-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .question-details {
+    margin-right: 20px;
+  }
+  
+  .answer-list {
+    border-left: 2px solid #ccc;
+    padding-left: 20px;
+  }
+  
+  .answer-list h3 {
+    margin-top: 0;
+    font-size: 18px;
+  }
+  
+  .answer-list ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .answer-list li {
+    margin-bottom: 5px;
+  }
+  

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<div class="layout-wrapper layout-content-navbar">
+  <div class="layout-container">
+    <app-sidebar-back></app-sidebar-back>
+    <div class="layout-page">
+      <app-navbar-back></app-navbar-back>
+  
+
+<h2 style="text-align: center;">List of Answers</h2>
+<div class="button-container">
+    <button type="button" [routerLink]="['/addAnswer']">
+      <i class="fas fa-plus"></i>
+      Add Answer</button>
+  </div>
+<table >
+    <thead>
+        <tr>
+            <th>Answer Text</th>
+            <th>Score</th> <!-- Utilisez <th> pour les en-têtes de colonne -->
+            <th>Question associated</th>
+            <th>Actions</th>
+           
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let answer of answers"> <!-- Utilisez 'questions' au lieu de 'Questions' -->
+            <td>{{answer.textAnswer}}</td>
+            <td>{{ answer.score}}</td>
+            <td>{{ answer.question.textQ }}</td>
+            <td>
+              <button class="btn btn-primary" [routerLink]="['/updateAnswer', answer.idAnswer]">
+                <i class="fa fa-edit fa-lg"></i>  Edit
+              </button>
+              <button class="btn btn-danger" (click)="deleteAnswer(answer)">
+                <i class="fa fa-trash fa-lg"></i> <!-- Utilisez les classes de taille de l'icône ici -->
+                Delete
+            </button>
+            </td>
+           
+        </tr>
+    </tbody>
+</table>
+</div>
+  </div>
+</div>
+<app-footer-back></app-footer-back>
+</html>

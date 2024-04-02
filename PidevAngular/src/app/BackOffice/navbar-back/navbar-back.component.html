@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Navigation Bar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+	<nav class="navbar">
+        <div class="navdiv">
+                <div class="logovitanova">
+                <img src="/assets/BackOfficeAssets/img/logo.png" width=100px height=70px>
+            </div>
+          <div class ="navitems">
+			<ul>
+                <li><a href="#" id="home-link">Home</a></li>
+                <li><a href="#" id="about-link">About</a></li>
+                <li><a href="#" id="contact-link">Contact</a></li>
+				<button><a href="#">Log out</a><i class="fas fa-sign-out-alt fa-lg" ></i></button>
+			</ul>
+          </div>
+        </div>
+	</nav>
+</body>
+<style type="text/css">
+    *{
+        text-decoration: none;
+    }
+    .navbar{
+        background: #e1e1e1; 
+        padding-right: 15px;
+        padding-left: 15px;
+        height: 100px;
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3); /* Ajout de l'effet d'ombre */
+        animation: gradientAnimation 5s infinite alternate; /* Animation du dégradé */
+    }
+    @keyframes gradientAnimation {
+        0% { background-position: 0% 50%; }
+        100% { background-position: 100% 50%; }
+    }
+    
+    .navdiv{
+        display: flex; align-items: center; justify-content: space-around;
+    }
+    .logovitanova{
+        padding-left: 270px;
+        padding-right: 650px;
+    }
+    .navitems{
+        padding-top: 20px;
+    }
+ 
+    li{
+        list-style: none; display: inline-block;
+    }
+    #home-link,
+#about-link,
+#contact-link {
+    color: orangered;
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 25px;
+    font-family: Bungee Spice;
+    transition: font-size 0.3s ease, color 0.3s ease; /* Ajout de l'animation de transition */
+}
+
+#home-link:hover,
+#about-link:hover,
+#contact-link:hover {
+    font-size: 23px; /* Augmente la taille du texte au survol */
+    color: white; /* Assombrit la couleur au survol */
+    text-decoration: none;
+}
+button {
+    background-color: orangered; 
+    margin-left: 10px; 
+    border-radius: 10px; 
+    padding: 10px; 
+    width: 120px; 
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Ajout de l'animation de transition */
+}
+button i {
+    color: white; 
+    margin-left: 7px;
+}
+
+button:hover {
+    background-color: white;
+    transform: scale(1.1); /* Augmenter la taille du bouton */
+}
+
+button:hover a {
+    color: orangered;
+    text-decoration: none;
+}
+
+button:hover i {
+    color: orangered;
+}
+</style>
+</html>

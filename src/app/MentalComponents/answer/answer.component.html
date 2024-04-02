@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<div class="layout-wrapper layout-content-navbar">
+  <div class="layout-container">
+    <app-sidebar-back></app-sidebar-back>
+    <div class="layout-page">
+      <app-navbar-back></app-navbar-back>
+    
+
+    <div class="list">
+      <h2 style="text-align: center;">List of Answers</h2>
+
+      
+      <div class="button-container">
+        <button type="button" [routerLink]="['/addAnswer']">
+          <i class="fas fa-plus"></i> Add Answer
+        </button>
+      </div>
+      <!-- Champ de recherche -->
+      <div class="search-field">
+      <mat-form-field appearance="fill">
+        <mat-label>Search</mat-label>
+        <input matInput (input)="applyFilter($event)" placeholder="Search...">
+      </mat-form-field>
+    </div>
+
+
+      <div class="data-table-answer">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+          <ng-container matColumnDef="textAnswer">
+            <th mat-header-cell *matHeaderCellDef> Answer Text </th>
+            <td mat-cell *matCellDef="let answer"> {{ answer.textAnswer }} </td>
+          </ng-container>
+          <ng-container matColumnDef="score">
+            <th mat-header-cell *matHeaderCellDef> Score </th>
+            <td mat-cell *matCellDef="let answer"> {{ answer.score }} </td>
+          </ng-container>
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let answer">
+              <button mat-icon-button [routerLink]="['/updateAnswer', answer.idAnswer]">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button (click)="deleteAnswer(answer)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+      </div>
+    </div>
+      
+
+
+  </div>
+</div>
+</div>
+
+<app-footer-back></app-footer-back>
+
+</html>

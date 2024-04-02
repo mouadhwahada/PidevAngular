@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <div class="layout-wrapper layout-content-navbar">
+        <div class="layout-container">
+          <app-sidebar-back></app-sidebar-back>
+          <div class="layout-page">
+            <app-navbar-back></app-navbar-back>
+            <div class="form-container">
+              <h2>Edit Question</h2>
+              <form [formGroup]="updateQuestionForm" (ngSubmit)="updateQuestion()">
+                <div class="form-group">
+                  <label>Lettre:</label>
+                  <input type="text" formControlName="charQ" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label>Question text:</label>
+                  <input type="text" formControlName="textQ" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-success">Update</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <app-footer-back></app-footer-back>
+
+</html>
