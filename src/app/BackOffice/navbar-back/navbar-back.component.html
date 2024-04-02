@@ -1,0 +1,31 @@
+<div class="navbar">
+    <div class="navbar-menu">
+        <div class="menu">
+        <a href="#" class="navbar-item"><i class="fas fa-home"></i> Home</a>
+        <a href="#" class="navbar-item"><i class="fas fa-envelope"></i> Contact</a>
+        <div class="search-container">
+            <input type="text" placeholder="Search...">
+            <button type="submit"><i class="fas fa-search"></i></button>
+        </div>
+    </div>
+         <li>
+            <button
+            (click)="logout()"
+            *ngIf="login.isLoggedIn()"
+            mat-icon-button
+            class="example-icon favorite-icon mr20 ml20"
+            aria-label="Example icon-button with heart icon">
+         Logout
+           </button>
+    </div>
+  </div>
+  <div class="under-navbar">
+    <h2>Welcome to the Admin Panel</h2>
+    <p>Manage your application effortlessly with our intuitive interface.</p>
+    <div class="icon-container">
+        <i class="fas fa-cogs"></i>
+        <i class="fas fa-chart-line"></i>
+        <i class="fas fa-tachometer-alt"></i>
+    </div>
+</div>
+  

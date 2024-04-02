@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vitanova Admin</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Vitanova Admin</h2>
+    <div class="managements">
+    <ul>
+      <li><a href="/admin"><i class="fas fa-users"></i> Home</a></li>
+
+      <li><a href="/admin/profile"><i class="fas fa-users"></i> Porfile</a></li>
+      <li><a href="#"><i class="fas fa-utensils"></i> Nutrition Management</a></li>
+      <li><a href="#"><i class="fas fa-brain"></i> Mental Well-being Management</a></li>
+      <li><a href="#"><i class="fas fa-dumbbell"></i> Workout Management</a></li>
+      <li><a href="#"><i class="fas fa-shopping-cart"></i> Marketplace Management</a></li>
+      <li><a href="#"><i class="fas fa-users"></i> Community Management</a></li>
+      <li>
+        <button
+        (click)="logout()"
+        *ngIf="login.isLoggedIn()"
+        mat-icon-button
+        class="example-icon favorite-icon mr20 ml20"
+        aria-label="Example icon-button with heart icon">
+     Logout
+        </button></li>
+    </ul>
+</div>
+  </div>
+</body>
+</html>

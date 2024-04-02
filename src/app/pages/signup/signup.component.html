@@ -1,0 +1,114 @@
+ <!-- Favicons -->
+ <link href="/assets/FrontOfficeAssets/img/favicon.png" rel="icon">
+ <link href="/assets/FrontOfficeAssets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+ <!-- Google Fonts -->
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+ <!-- Vendor CSS Files -->
+ <link href="/assets/FrontOfficeAssets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+ <link href="/assets/FrontOfficeAssets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+ <link href="/assets/FrontOfficeAssets/vendor/aos/aos.css" rel="stylesheet">
+ <link href="/assets/FrontOfficeAssets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+ <link href="/assets/FrontOfficeAssets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+ <!-- Template Main CSS File -->
+ <link href="/assets/FrontOfficeAssets/css/main.css" rel="stylesheet">
+ <app-nav-bar-front></app-nav-bar-front>
+ 
+ <div class="bootstrap-wrapper">
+
+  <div class="container">
+
+      <div class="row">
+
+          <div class="col-md-6 offset-md-3">
+            <div class="container text-center">
+              <img src="../../../assets/images.png" class="text-center" alt="">
+            </div>
+            
+            
+          
+
+              
+      <form (ngSubmit)="formSubmit()">
+  <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Username</mat-label>
+      <input
+      [(ngModel)]="user.username"
+      name="username"
+       matInput 
+       placeholder="Enter here" />
+       <mat-hint>User name must be unique !!</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>UserPassword</mat-label>
+      <input
+      [(ngModel)]="user.password"
+      name="password" type="password" matInput placeholder="Enter here" />
+    </mat-form-field>
+
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>FirstName</mat-label>
+      <input
+      required=""
+      [(ngModel)]="user.firstname"
+      name="firstname" matInput placeholder="Enter here" />
+    </mat-form-field>
+
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Lastname</mat-label>
+      <input
+      required=""
+      [(ngModel)]="user.lastname"
+      name="lastname" matInput placeholder="Enter here" />
+    </mat-form-field>
+
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Email Address</mat-label>
+      <input
+      [(ngModel)]="user.email"
+      name="email" type="email" matInput placeholder="Enter here" />
+
+    </mat-form-field>
+
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Phone Number</mat-label>
+      <input
+      [(ngModel)]="user.phone"
+      name="phone" type="number" matInput placeholder="Enter here" />
+    </mat-form-field>
+<div class="container  text-center">
+
+  <button type="submit" mat-raised-button color="primary" >Register</button>
+  <button style="margin-left: 20px" mat-raised-button color="accent">Clear</button>
+
+</div>
+
+</form>
+
+          </div>
+
+
+      </div>
+  </div>
+
+</div>
+
+ <router-outlet></router-outlet>
+ 
+  <!-- Vendor JS Files -->
+  <script src="/assets/FrontOfficeAssets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/FrontOfficeAssets/vendor/aos\aos.js"></script>
+  <script src="/assets/FrontOfficeAssets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="/assets/FrontOfficeAssets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="/assets/FrontOfficeAssets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="/assets/FrontOfficeAssets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/assets/FrontOfficeAssets/js/main.js"></script>
+
+
