@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>List of Foods</title>
+</head>
+
+<body>
+  <div class="layout-wrapper layout-content-navbar">
+    <div class="layout-container">
+      <app-sidebar-back></app-sidebar-back>
+      <div class="layout-page">
+        <app-navbar-back></app-navbar-back>
+<h2>Nutrition Tracking List</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Date</th>
+      <th>Total Calories</th>
+      <!-- Add more table headers as needed -->
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let tracking of nutritionTrackingList">
+      <td>{{ tracking.idNutTrack }}</td>
+      <td>{{ tracking.dateNut }}</td>
+      <td>{{ tracking.total_calories }}</td>
+      <!-- Add more table cells to display additional properties -->
+      <td>
+        <button id="one" (click)="navigateToEditPage(tracking.idNutTrack)">
+            <i class="fa fa-edit fa-lg"></i>  Edit</button>
+
+        <button id="two" (click)="deleteNutritionTracking(tracking.idNutTrack)" class="btn btn-danger">
+            <i class="fa fa-trash fa-lg"></i> 
+            Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<app-footer-back></app-footer-back>

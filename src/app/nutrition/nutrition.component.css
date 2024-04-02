@@ -1,0 +1,35 @@
+.section-header{
+    margin-top: 100px;
+}
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #9b1111; /* Couleur de fond */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color:#9b1111; /* Couleur de fond au survol */
+  }
+  
+  button:focus {
+    outline: none;
+  }
+  
+  /* Pour un style plus flat */
+  button.flat {
+    background-color: transparent;
+    color: #9b1111;
+    border: 2px solid #9b1111;
+  }
+  
+  button.flat:hover {
+    background-color: rgba(76, 175, 80, 0.1);
+  }
+  

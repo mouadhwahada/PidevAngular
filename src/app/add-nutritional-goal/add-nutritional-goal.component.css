@@ -1,0 +1,54 @@
+/* Style du formulaire */
+.for {
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    width: 500px;
+    margin-left: 500px;
+    margin-bottom: 100px;
+}
+
+ h2 {
+    margin-top: 200px;
+    color: #9b1111;
+    margin-left: 520px;
+    font-size: 50px;
+   
+}
+
+.for .form-group {
+    margin-bottom: 20px;
+}
+
+.for label {
+    font-weight: bold;
+    color: #555;
+}
+
+.for input[type="number"],
+.for select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.for button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #c30710;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.for button:hover {
+    background-color: #9b1111;
+}
+.btn {
+    margin: 20px;
+}
+

@@ -1,0 +1,144 @@
+<link href="/assets/FrontOfficeAssets/img/favicon.png" rel="icon">
+<link href="/assets/FrontOfficeAssets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+<!-- Vendor CSS Files -->
+<link href="/assets/FrontOfficeAssets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/assets/FrontOfficeAssets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+<link href="/assets/FrontOfficeAssets/vendor/aos/aos.css" rel="stylesheet">
+<link href="/assets/FrontOfficeAssets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+<link href="/assets/FrontOfficeAssets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+<!-- Template Main CSS File -->
+<link href="/assets/FrontOfficeAssets/css/main.css" rel="stylesheet">
+
+<!-- Navbar -->
+<app-nav-bar-front></app-nav-bar-front>
+
+
+<div class="layout-container">
+    <h2>Nutrition Tracking List</h2>
+    <div class="ss">
+      <input type="text" formControlName="keyword" placeholder="Search" (input)="onSearch()">
+        <!-- Ajoutez d'autres champs de recherche si nécessaire -->
+    </div>
+
+    <!-- Tableau de suivi -->
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Total Calories</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Button to open the modal -->
+
+            <!-- Iterate through nutrition tracking list -->
+            <tr *ngFor="let tracking of nutritionTrackingList">
+                <td>{{ tracking.dateNut }}</td>
+                <td>{{ tracking.total_calories }}</td>
+                <td>
+                  <button id="one" (click)="navigateToEditPage(tracking.idNutTrack)">
+                        <i class="fa fa-edit fa-lg"></i> Edit
+                    </button>
+                    <button id="two" (click)="deleteNutritionTracking(tracking.idNutTrack)" class="btn btn-danger">
+                        <i class="fa fa-trash fa-lg"></i> Delete
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" class="text-end"> <!-- Utilisation de la classe text-end pour aligner le bouton à droite -->
+                    <button type="button" class="btn btn-primary" (click)="openNutritionTrackingModal()">
+                        Add Nutrition Tracking
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="progress">
+        
+            <div class="progress-bar" role="progressbar" [style.width.%]="progressPercentage">
+                {{ progressPercentage }}%
+            </div>
+            <div *ngIf="progressPercentage >= 100" class="alert alert-success" role="alert">
+                Congratulations! You are on track to achieve your nutritional goal.
+            </div>
+            <div *ngIf="progressPercentage < 100 && progressPercentage >= 80" class="alert alert-warning" role="alert">
+                You're making good progress toward your nutritional goal. Keep it up!
+            </div>
+            <div *ngIf="progressPercentage < 80" class="alert alert-danger" role="alert">
+                Warning! You may need to reconsider your food choices to reach your nutritional goal.
+            </div>
+        </div>
+        
+    <app-footer-front></app-footer-front>
+</div>
+
+<!-- Add Nutrition Tracking Modal -->
+<div class="modal fade" id="addNutritionTrackingModal" tabindex="-1" role="dialog" aria-labelledby="addNutritionTrackingModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addNutritionTrackingModalLabel">Add Nutrition Tracking</h5>
+                <button type="button" class="btn-close" (click)="closeNutritionTrackingModal()" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Add Nutrition Tracking Form or Content Here -->
+                <div class="container">
+
+
+                    <form [formGroup]="addNutritionTrackingForm" (ngSubmit)="onSubmit()">
+                        <div class="form-group">
+                            <label for="foodName">Food Name</label>
+                            <input type="text" id="foodName" formControlName="foodName" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="quantity">Quantity:</label>
+                            <input type="number" formControlName="quantity" id="quantity" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="caloriesPerServing">Calories per Serving</label>
+                            <input type="number" id="caloriesPerServing" formControlName="caloriesPerServing" class="form-control">
+                        </div>
+                        <button type="button" (click)="addConsumedFood()" class="btn btn-primary">Add Consumed Food</button>
+
+
+                        <div *ngIf="consumedFoods.length > 0">
+                            <h3>Consumed Foods</h3>
+                            <ul>
+                                <li *ngFor="let food of consumedFoods">
+                                    {{ food.namefood }} - Calories: {{ food.calories_per_serving }}
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h4>Daily Calorie Goal: {{ dailyCalorieGoal }}</h4>
+                        </div>
+
+                        <div *ngIf="consumedFoods.length > 0">
+
+                            <h4>Remaining calories: {{ difference }}</h4>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" (click)="closeNutritionTrackingModal()">Close</button>
+                    <!-- Add a button here to submit the form if needed -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+  

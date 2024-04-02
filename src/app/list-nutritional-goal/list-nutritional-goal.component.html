@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>List of Nutritional Goals</title>
+    <link rel="stylesheet" href="/assets/BackOfficeAssets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/BackOfficeAssets/css/now-ui-dashboard.css">
+</head>
+
+<body>
+    <div class="layout-wrapper layout-content-navbar">
+        <div class="layout-container">
+            <app-sidebar-back></app-sidebar-back>
+            <div class="layout-page">
+                <app-navbar-back></app-navbar-back>
+                <div class="list">
+                    <h2 style="text-align: center; margin-left: 250px;">List of Nutritional Goals</h2>
+                    <div class="search-field">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Search</mat-label>
+                            <input matInput (input)="applyFilter($event)" placeholder="Search...">
+                        </mat-form-field>
+                    </div>
+                    <div class="data-table-food">
+                        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                            <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+                                <th mat-header-cell *matHeaderCellDef> {{ column }} </th>
+                                <td mat-cell *matCellDef="let goal">
+                                    <ng-container *ngIf="column !== 'actions'; else actionsColumn">
+                                        {{ goal[column] }}
+                                    </ng-container>
+                                    <ng-template #actionsColumn>
+                                        <button mat-icon-button *ngIf="column === 'actions'" [routerLink]="['/updateGoal', goal.idNGoal]">
+                                            <mat-icon>edit</mat-icon>
+                                        </button>
+                                        <button mat-icon-button *ngIf="column === 'actions'" (click)="deleteGoal(goal)">
+                                            <mat-icon>delete</mat-icon>
+                                        </button>
+                                    </ng-template>
+                                </td>
+                            </ng-container>
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-footer-back></app-footer-back>
+</body>
+
+</html>
+

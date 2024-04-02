@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <div class="layout-wrapper layout-content-navbar">
+    <div class="layout-container">
+      <app-sidebar-back></app-sidebar-back>
+      <div class="layout-page">
+        <app-navbar-back></app-navbar-back>
+     <div class="container">
+        <h2>Edit Food</h2>
+        <!-- Formulaire de mise à jour de la nourriture -->
+        <form [formGroup]="updateFoodForm" (ngSubmit)="updateFood()">
+          <div class="form-group">
+            <label>Name:</label>
+            <!-- Champ de formulaire pour le nom de la nourriture -->
+            <input type="text" formControlName="namefood" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Calories per Serving:</label>
+            <!-- Champ de formulaire pour les calories par portion -->
+            <input type="text" formControlName="calories_per_serving" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Protein per Serving:</label>
+            <!-- Champ de formulaire pour les protéines par portion -->
+            <input type="text" formControlName="protein_per_serving" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Carbohydrates per Serving:</label>
+            <!-- Champ de formulaire pour les glucides par portion -->
+            <input type="text" formControlName="carbohydrates_per_Serving" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Fat per Serving:</label>
+            <!-- Champ de formulaire pour les lipides par portion -->
+            <input type="text" formControlName="fat_per_Serving" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Fiber per Serving:</label>
+            <!-- Champ de formulaire pour les fibres par portion -->
+            <input type="text" formControlName="fiber_per_Serving" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Vitamins per Serving:</label>
+            <!-- Champ de formulaire pour les vitamines par portion -->
+            <input type="text" formControlName="vitamins_per_Serving" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Minerals per Serving:</label>
+            <!-- Champ de formulaire pour les minéraux par portion -->
+            <input type="text" formControlName="minerals_per_Serving" class="form-control">
+          </div>
+          <!-- Ajoutez ici d'autres champs de formulaire si nécessaire -->
+          <!-- Bouton de soumission du formulaire -->
+          <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+    </div>
+</div>
+
+</div></div>
+<app-footer-back></app-footer-back>
+
+</html>
+
+
+

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <div class="layout-wrapper layout-content-navbar">
+    <div class="layout-container">
+      <app-sidebar-back></app-sidebar-back>
+      <div class="layout-page">
+        <app-navbar-back></app-navbar-back>
+     <div class="container">
+       
+    <h2>Edit Nutritional Goal</h2>
+    <div class="form-container">
+    <form [formGroup]="updateNutritionalGoalForm" (ngSubmit)="updateNutritionalGoal()">
+      <div class="form-group">
+        <label for="daily_calorie_goal">Daily Calorie Goal:</label>
+        <input type="number" formControlName="daily_calorie_goal" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="daily_protein_goal">Daily Protein Goal:</label>
+        <input type="number" formControlName="daily_protein_goal" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="daily_carbohydrates_goal">Daily Carbohydrates Goal:</label>
+        <input type="number" formControlName="daily_carbohydrates_goal" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="goal">Goal:</label>
+        <input type="text" formControlName="goal" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="weight_goal">Weight Goal:</label>
+        <input type="number" formControlName="weight_goal" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="Duration">Duration:</label>
+        <input type="number" formControlName="Duration" class="form-control">
+      </div>
+      <button type="submit" class="btn btn-primary">Update Nutritional Goal</button>
+     
+    </form>
+  </div>
+</div>
+        </div>
+    
+      </div></div>
+      <app-footer-back></app-footer-back>
+      
+      </html>
+
+

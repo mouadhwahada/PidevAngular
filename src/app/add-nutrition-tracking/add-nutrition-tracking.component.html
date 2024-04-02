@@ -1,0 +1,92 @@
+<link href="/assets/FrontOfficeAssets/img/favicon.png" rel="icon">
+<link href="/assets/FrontOfficeAssets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+<!-- Vendor CSS Files -->
+<link href="/assets/FrontOfficeAssets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/assets/FrontOfficeAssets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+<link href="/assets/FrontOfficeAssets/vendor/aos/aos.css" rel="stylesheet">
+<link href="/assets/FrontOfficeAssets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+<link href="/assets/FrontOfficeAssets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+<!-- Template Main CSS File -->
+<link href="/assets/FrontOfficeAssets/css/main.css" rel="stylesheet">
+<app-nav-bar-front></app-nav-bar-front>
+     <div class="a">
+      <div class="icon">
+        <div class="icon-container" (click)="showFoodSuggestions()">
+            <i class="bi bi-lightbulb icon-large"></i>
+            <div class="notification-dot" *ngIf="notificationReceived"></div> <!-- Déplacer la div du point ici -->
+        </div>
+
+        <div class="suggestions-container" [@showHideSuggestions]="showSuggestions">
+            <div *ngFor="let suggestion of suggestionFoods" class="suggestion-item">
+                Suggestions:<br>{{ suggestion.namefood }} - {{ suggestion.calories_per_serving }} calories
+            </div>
+        </div>
+    </div>
+        
+          
+        
+      </div>
+        <div class="container">
+        <!-- Déplacez le bouton à l'intérieur du formulaire -->
+        <h2>Add Nutrition Tracking</h2>
+         <div class="f">
+
+        <form [formGroup]="addNutritionTrackingForm" (ngSubmit)="onSubmit()">
+
+          <div class="form-group">
+            <label for="foodName">Food Name</label>
+            <input type="text" id="foodName" formControlName="foodName" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="quantity">Quantity:</label>
+            <input type="number" formControlName="quantity" id="quantity" required>
+          </div>
+          <div class="form-group">
+            <label for="caloriesPerServing">Calories per Serving</label>
+            <input type="number" id="caloriesPerServing" formControlName="caloriesPerServing" class="form-control">
+          </div>
+          <button type="button" (click)="addConsumedFood()" class="btn btn-primary">Add Consumed Food</button>
+      
+
+        <div *ngIf="consumedFoods.length > 0">
+          <h3>Consumed Foods</h3>
+          <ul>
+            <li *ngFor="let food of consumedFoods">
+              {{ food.namefood }} - Calories: {{ food.calories_per_serving }}
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Daily Calorie Goal: {{ dailyCalorieGoal }}</h4>
+        </div>
+
+        <div *ngIf="consumedFoods.length > 0"> 
+          <h4>Remaining calories: {{ difference }}</h4>
+        </div>
+           <div>
+        <button type="submit"  class="btn btn-primary">Submit</button>
+         </div>
+       
+      </form>
+     </div>
+     </div>
+        <!-- Conteneur de l'icône des suggestions de nourriture avec animation -->
+   
+        <app-footer-front></app-footer-front>
+        <script src="/assets/FrontOfficeAssets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="/assets/FrontOfficeAssets/vendor/aos\aos.js"></script>
+        <script src="/assets/FrontOfficeAssets/vendor/glightbox/js/glightbox.min.js"></script>
+        <script src="/assets/FrontOfficeAssets/vendor/purecounter/purecounter_vanilla.js"></script>
+        <script src="/assets/FrontOfficeAssets/vendor/swiper/swiper-bundle.min.js"></script>
+        <script src="/assets/FrontOfficeAssets/vendor/php-email-form/validate.js"></script>
+        
+        <!-- Template Main JS File -->
+        <script src="/assets/FrontOfficeAssets/js/main.js"></script>

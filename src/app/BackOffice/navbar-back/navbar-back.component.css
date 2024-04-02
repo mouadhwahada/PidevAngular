@@ -1,0 +1,102 @@
+/* Navbar CSS */
+.navbar {
+    position: fixed;
+    background-color: #f0f4f8; 
+    padding: 15px; /* Augmentez la taille de rembourrage pour une plus grande hauteur */
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: -15px; /* Ajustez la marge supérieure en conséquence */
+    height: 80px; /* Augmentez la hauteur de la barre de navigation */
+    z-index: 999;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin-left: 20px;
+    height: 100px;
+}
+
+.navbar:hover {
+    background-color: #dfe6eb;
+    box-shadow: 0 2px 5px rgba(234, 4, 4, 0.1);
+}
+
+.navbar-menu {
+    display: flex;
+    align-items: center;
+    margin-right: 70px;
+}
+
+.menu {
+    margin-right: 550px;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-item {
+    margin-right: 40px;
+    margin-left: 10px;
+    text-decoration: none;
+    color: #666666;
+    display: flex;
+    align-items: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.logout-button {
+    border: none;
+    color: #fff;
+    padding: 10px 17px;
+    border-radius: 50px;
+    cursor: pointer;
+    background: linear-gradient(to bottom, #b5f5b5, #4cec4c);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar:hover {
+    background-color: #F8F8FF;
+}
+
+.navbar-item:hover {
+    font-size: 18px;
+}
+
+.logout-button:hover {
+    transform: scale(1.1);
+}
+
+.navbar-item i {
+    margin-right: 10px;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(to bottom,  #69ef69,#b5f5b5);
+    border-radius: 15px;
+    padding: 5px;
+}
+
+.search-container input[type="text"] {
+    flex: 1;
+    border: none;
+    border-radius: 15px;
+    background-color: #fff;
+    font-size: 14px;
+    padding: 5px;
+}
+
+.search-container button {
+    background: none;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    padding: 5px 10px;
+    color: #fff;
+    margin-left: 5px;
+}
+
+.search-container input[type="text"]:focus {
+    outline: none;
+    border-color: transparent;
+}
