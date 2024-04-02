@@ -16,24 +16,12 @@
           <li><a href="#">GYM</a></li>
           <li><a href="#">Mental Health</a></li>
           <li><a href="#">Forum</a></li>
-          <li class="dropdown"><a href="#"><span>Shop</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-            <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Drop Down 2</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-            </ul>
-          </li>
+          <li><a [routerLink]="['/products22']">Shop</a></li>
+
+          
           <li><a href="#contact">Contact</a></li>
+          <li><a [routerLink]="['/orderitem']"><i class="bi bi-cart"></i></a></li>
+
         </ul>
       </nav><!-- .navbar -->
 
@@ -43,3 +31,20 @@
 
     </div>
   </header><!-- End Header -->
+
+  <style>
+    /* Styles pour l'icône de panier */
+    .navbar .bi-cart {
+  font-size: 24px; /* Taille de l'icône */
+  color: #333; /* Couleur de l'icône */
+  margin-left: 15px; /* Espacement entre l'icône et les autres éléments */
+}
+
+/* Styles pour l'effet hover */
+.navbar .bi-cart:hover {
+  color: #ff0000; /* Couleur de l'icône au survol */
+  cursor: pointer; /* Curseur de la souris au survol */
+}
+  </style>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,10 @@
+.container{
+    transform: translateX(100px);
+}
+
+.chart-container {
+    width: 30%; /* Réduire la largeur du conteneur à 50% */
+    margin-left:45%; /* Déplacer le conteneur de 25% vers la droite */
+     /* Prend la largeur totale de la colonne */
+  }
+  

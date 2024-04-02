@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Product</title>
+  <!-- Inclure Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .custom-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 90vh;
+    }
+
+    .card {
+      border: none;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-header {
+      background-color: #007bff;
+      color: #fff;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    .btn-primary {
+      background-color: #007bff;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+
+<app-sidebar-back></app-sidebar-back>
+<body>
+  <div class="container">
+  <div class="custom-container">
+    <div class="col-md-6">
+      <div class="card rounded">
+        <div class="card-header">
+          <h2>Add Product</h2>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="productForm" (ngSubmit)="addProduct()">
+            <div class="form-group">
+              <label for="name">Name:</label>
+              <input type="text" formControlName="name" id="name" class="form-control" placeholder="Enter product name">
+            </div>
+            <div class="form-group">
+              <label for="price">Price:</label>
+              <input type="number" formControlName="price" id="price" class="form-control" placeholder="Enter product price">
+            </div>
+            <div class="form-group">
+              <label for="description">Description:</label>
+              <textarea formControlName="description" id="description" class="form-control" placeholder="Enter product description"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="stockQuantity">Stock Quantity:</label>
+              <input type="number" formControlName="stockQuantity" id="stockQuantity" class="form-control" placeholder="Enter stock quantity">
+            </div>
+            <div class="form-group">
+              <label for="type">Type:</label>
+              <select formControlName="type" id="type" class="form-control">
+                <option value="">Select product type</option>
+                <option value="PROTEINE">PROTEINE</option>
+                <option value="SUPPLEMENTS">SUPPLEMENTS</option>
+                <option value="ENERGISANTS">ENERGISANTS</option>
+                <option value="BCAA">BCAA</option>
+                <option value="CREATINE">CREATINE</option>
+                <option value="VITAMINES_ET_MINERAUX">VITAMINES_ET_MINERAUX</option>
+                <option value="AMINOACIDES">AMINOACIDES</option>
+                <option value="AUTRES">Autres</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="image">Product Image:</label>
+              <input type="file" (change)="onFileSelected($event)" id="image" class="form-control-file">
+            </div>
+            <div class="text-center mt-3">
+              <button type="submit" class="btn btn-primary">Add Product</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>
+

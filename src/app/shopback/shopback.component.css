@@ -1,0 +1,162 @@
+.table-container {
+    margin-top: 100px;
+        max-height: 800px;
+       /* Retire la barre de défilement horizontale */
+
+         /* Activer le défilement vertical lorsque le contenu dépasse la hauteur maximale */
+         transform: translateX(150px); /* Appliquer une translation horizontale de 50 pixels */
+
+    }
+    
+    
+    .input-group{
+        transform: translateX(-270px);
+    }
+    /* CSS pour styliser le scroll */
+
+
+
+
+
+
+
+/* CSS pour styliser le bouton "Add New Product" */
+.a {
+    background-color: #28a745; /* Couleur de fond */
+    color: white; /* Couleur du texte */
+    border: none; /* Supprimer la bordure */
+    padding: 10px 20px; /* Espacement intérieur */
+    border-radius: 5px; /* Bordure arrondie */
+    cursor: pointer; /* Curseur de souris */
+}
+
+/* Effet de survol */
+.a:hover {
+    background-color: #218838; /* Couleur de fond au survol */
+}
+
+.custom-modal-container::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Couleur de fond semi-transparente */
+    z-index: 9998; /* Assure que le fond reste en arrière-plan */
+  }
+  
+  /* Styles pour le contenu du modal */
+  .custom-modal-dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 9999; /* Assure que le contenu du modal reste au-dessus du fond semi-transparent */
+    max-width: 60%; /* Taille maximale du modal */
+    width: 370px; /* Largeur par défaut du modal */
+    overflow-y: auto; /* Activation du défilement vertical si le contenu dépasse la hauteur maximale */
+    height: 400px;
+    scrollbar-width: thin; /* Largeur de la barre de défilement */
+    scrollbar-color: rgba(178, 165, 165, 0.945) transparent; /* Couleur de la barre de défilement */ /* Vous pouvez ajuster cette valeur en fonction de la hauteur souhaitée */
+
+  }
+
+
+  .custom-modal-dialog::-webkit-scrollbar-track {
+    background-color: transparent; /* Couleur de fond de la piste de défilement */
+}
+
+.custom-modal-dialog::-webkit-scrollbar-thumb {
+    background-color: rgba(225, 224, 224, 0.5); /* Couleur de la poignée de défilement */
+    border-radius: 3px; /* Rayon de bordure de la poignée de défilement */
+}
+
+
+  .custom-modal-dialog img {
+    max-width: 100%; /* Assurez-vous que l'image ne dépasse pas la largeur maximale du parent */
+    height: auto; /* Permet à l'image de conserver son ratio d'aspect */
+    width: 100%; /* Ajustez la largeur de l'image pour qu'elle occupe tout l'espace disponible */
+   
+  }
+
+  .search-and-add{
+    transform: translateX(400px);
+    margin-bottom: 20px;
+  }
+  .search-and-add .btn-outline-success {
+    /* Ajoutez vos styles personnalisés ici */
+    color: #fff; /* Couleur du texte */
+    background-color: #28a745; /* Couleur de fond */
+    border-color: #28a745; /* Couleur de la bordure */
+}
+
+.search-and-add .btn-outline-success:hover {
+    /* Styles au survol */
+    background-color: #218838; /* Couleur de fond au survol */
+    border-color: #1e7e34; /* Couleur de la bordure au survol */
+}
+
+/* Style pour l'input de discount */
+.custom-modal-body input[type="number"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Style pour le bouton Apply */
+.custom-modal-body button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.custom-modal-body button:hover {
+  background-color: #45a049;
+}
+
+
+/* CSS pour l'input */
+.custom-modal-body input[type="number"] {
+  width: 60%;
+  padding: 10px;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  margin-top: 100px;
+  margin-left: 80px;
+
+}
+
+/* CSS pour le bouton */
+.custom-modal-body button {
+  width: 100px; /* Ajustez la largeur selon vos besoins */
+  padding: 10px;
+  background-color: #28a745; /* Couleur de fond */
+  color: #fff; /* Couleur du texte */
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: 130px; /* Animation de transition */
+}
+
+/* CSS pour le survol du bouton */
+.custom-modal-body button:hover {
+  background-color: #218838; /* Couleur de fond au survol */
+}
+
+/* CSS pour la phrase dans le modal du discount */
+.custom-modal-body .discount-phrase {
+  text-align: center; /* Centrer horizontalement le texte */
+  font-size: 18px; /* Taille de la police */
+  color: #333; /* Couleur du texte */
+  margin-bottom: 20px; /* Espacement en bas de la phrase */
+}

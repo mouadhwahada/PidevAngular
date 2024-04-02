@@ -1,0 +1,15 @@
+<script src="https://js.stripe.com/v3/"></script>
+<button id="checkout-button">Payer</button>
+
+<script>var stripe = Stripe('VOTRE_CLE_PUBLIQUE_STRIPE');
+    var checkoutButton = document.getElementById('checkout-button');
+    
+    checkoutButton.addEventListener('click', function () {
+      stripe.redirectToCheckout({
+        lineItems: [{ price: 'PRICE_ID', quantity: 1 }],
+        mode: 'payment',
+        successUrl: 'https://example.com/success',
+        cancelUrl: 'https://example.com/cancel',
+      });
+    });
+    </script>

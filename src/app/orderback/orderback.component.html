@@ -1,0 +1,55 @@
+<app-sidebar-back></app-sidebar-back>
+<body>
+<div class="container mt-5">
+    <div class="d-flex justify-content-center row">
+        <div class="col-md-10">
+            <div class="rounded">
+                <div class="table-responsive table-borderless">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="text-center">
+                                    
+                                </th>
+                                <th>Order #</th>
+                                <th>Status</th>
+                                <th>Total</th>
+                                <th>Created</th>
+                                <th>Details</th> <!-- Nouvelle colonne pour l'icône des détails -->
+
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-body">
+                            <tr class="cell-1" *ngFor="let order of orders">
+                                <td class="text-center">
+                                    <div class="toggle-btn">
+                                        <div class="inner-circle"></div>
+                                    </div>
+                                </td>
+                                <td>{{ order.codeOrder }}</td>
+                                <td><span class="badge badge-primary">{{ order.status }}</span></td>
+                                <td>${{ order.costOrder }}</td>
+                                <td>{{ order.dateOrder }}</td>
+                                <td>
+                                    <!-- Utilisation de l'icône "info-circle" pour afficher les détails de la commande -->
+                                    <i class="fa fa-info-circle" (click)="showOrderDetails(order.idOrder)"></i>
+                                </td>
+                                
+                                <td><i class="fa fa-ellipsis-h text-black-50"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- Lien CDN pour Font Awesome -->
+
+
+

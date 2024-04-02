@@ -1,0 +1,158 @@
+    <app-sidebar-back></app-sidebar-back>
+<style>
+  .container {
+  
+  transform: translateX(200px); /* Marge à gauche pour compenser la largeur du sidebar */
+
+}
+
+/* Styles pour le sidebar */
+
+
+
+
+
+.chart-container {
+  width: 30%; /* Réduire la largeur du conteneur à 50% */
+  margin-left:45%; /* Déplacer le conteneur de 25% vers la droite */
+   /* Prend la largeur totale de la colonne */
+}
+
+
+
+
+
+
+
+
+
+
+.search{
+  transform: translateX(400px);
+}
+
+
+
+.search input[type="search"] {
+  width: 300px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-shadow: none;
+}
+
+.search button[type="submit"] {
+  padding: 10px 20px;
+  border-radius: 50px;
+  background-color: #218838;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+
+
+.lowstck{
+  transform: translateX(300px);
+}
+
+
+</style>
+  
+
+  <body>
+    <div>
+      <div class="search">
+        <form class="form-inline ml-auto" (ngSubmit)="onSearch()">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search By Name" aria-label="Search By Name"
+            name="searchTerm" [(ngModel)]="searchTerm">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+
+      <!--ajout produit a ne pas oublier-->
+
+      <div class="content">
+        <div class="container">
+          <!-- Colonne gauche pour le tableau des produits -->
+          <div class="left-column">
+            <h2>Liste des produits</h2>
+
+            <table class="table table-striped">
+              <!-- En-tête du tableau -->
+              <thead>
+                <tr>
+                  <th>Nom</th>
+                  <th>Description</th>
+                  <th>Prix</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <!-- Corps du tableau -->
+              <tbody>
+                <tr *ngFor="let product of products">
+                  <td>{{ product.name }}</td>
+                  <td>{{ product.description }}</td>
+                  <td>{{ product.price }}</td>
+                  <td>
+                    <!-- Bouton pour afficher les détails du produit -->
+                    <button class="btn btn-info btn-sm" (click)="showDetails(product)">
+                      <i class="bi bi-eye"></i> Détails
+                    </button>
+
+                    <button class="btn btn-info btn-sm" [routerLink]="['/updateproduct', product.idProduct]">
+                      <i class="bi bi-pencil"></i> Modifier
+                    </button>
+
+                    <button class="btn btn-danger btn-sm" (click)="removeProduct(product.idProduct)">
+                      <i class="bi bi-trash"></i> Supprimer
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Colonne droite pour les détails du produit sélectionné -->
+          <div class="right-column col-md-6">
+            <div *ngIf="selectedProduct">
+              <h2>Détails du produit</h2>
+              <p><strong>Nom:</strong> {{ selectedProduct.name }}</p>
+              <p><strong>Description:</strong> {{ selectedProduct.description }}</p>
+              <p><strong>Prix:</strong> {{ selectedProduct.price }}</p>
+              <p><strong>Product Type:</strong> {{ selectedProduct.type }}</p>
+              <p><strong>Stock Quantity:</strong> {{ selectedProduct.stockQuantity }}</p>
+              <!-- Ajoutez d'autres détails si nécessaire -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="right-column">
+        <div class="chart-container">
+          <canvas id="productChart" width="50" height="50"></canvas>
+        </div>
+        <div class="low-stock">
+          <div *ngIf="productsLowStock && productsLowStock.length > 0">
+            <h2>Produits à faible stock</h2>
+            <ul>
+              <li *ngFor="let product of productsLowStock">
+                <p class="bi bi-exclamation-triangle-fill">Nom: {{ product.name }} Quantité en stock: {{ product.stockQuantity }}</p>
+              </li>
+            </ul>
+          </div>
+          <div *ngIf="!productsLowStock || productsLowStock.length === 0">
+            <p>Aucun produit à faible stock n'est disponible.</p>
+          </div>
+        </div>
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </div>
+
+    <div>
+    </div>
+  </body>
+
+

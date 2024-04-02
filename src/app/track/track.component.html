@@ -1,0 +1,62 @@
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<div class="card">
+    <div class="title">Purchase Receipt</div>
+    <div class="info">
+        <div class="row">
+            <div class="col-6">
+                <span class="heading">Dear {{ orders[0]?.user.userName }}</span><br>
+                <div> thank you for your purchase!</div>
+
+            </div>
+            <div class="col-6 text-right">
+                <span class="heading">Order No.</span><br>
+                <span class="details">{{ orders[0]?.codeOrder }}</span>
+            </div>
+        </div>      
+    </div>      
+    <div class="pricing">
+        <div class="row">
+            <div class="col-9">
+            </div>
+            
+
+            <p>Your order, placed on {{ orders[0]?.dateOrder }}, has been processed. The total cost of your order is ${{ orders[0]?.costOrder }}.</p>
+        </div>
+    </div>
+    <div class="total">
+        <div class="row">
+            <div class="col-9"></div>
+            <div class="col-3"><span>&pound;{{ calculateTotalCost() }}</span></div>
+        </div>
+    </div>
+
+    <div class="tracking">
+        <div class="title">Tracking Order</div>
+    </div>
+    <div class="progress-track">
+        <ul id="progressbar">
+            <li class="step0" id="step1" [ngClass]="{'active': isStepActive('PROCESSING')}">PROCESSING</li>
+            <li class="step0" id="step2" [ngClass]="{'active': isStepActive('SHIPPED')}">SHIPPED</li>
+            <li class="step0" id="step3" [ngClass]="{'active': isStepActive('IN_TRANSIT')}">IN_TRANSIT</li>
+            <li class="step0" id="step4" [ngClass]="{'active': isStepActive('DELIVERED')}">Delivered</li>
+        </ul>
+    </div>
+    
+      
+    
+    <div class="footer">
+        <div class="row">
+            <div class="col-2"><img class="img-fluid" src="https://i.imgur.com/YBWc55P.png"></div>
+            <div class="col-10">Want any help? Please &nbsp;<a> contact us</a></div>
+        </div>
+    </div>
+    
+    
+
+  <!-- Script pour jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- Script pour Bootstrap JS (avec Popper.js) -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+

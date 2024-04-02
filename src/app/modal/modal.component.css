@@ -1,0 +1,26 @@
+body{
+    margin-top: 100px;
+}
+
+.card {
+    border-color: #ddd;  /* Adjust border color if needed */
+  }
+  
+  .card-body {
+    padding: 2rem;  /* Adjust padding for more or less space */
+  }
+  
+  .form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;  /* Adjust margin for label spacing */
+  }
+  
+  .form-control {
+    height: 38px;  /* Adjust input height */
+  }
+  
+  .btn-primary {
+    padding: 10px 20px;  /* Adjust button padding */
+    border-radius: 5px;  /* Add rounded corners to button */
+  }
+  

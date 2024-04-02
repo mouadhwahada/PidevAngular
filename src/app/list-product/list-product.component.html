@@ -1,0 +1,206 @@
+<app-nav-bar-front></app-nav-bar-front>
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col text-center">
+      <h2 class="text-center fade-in-color">Welcome to Our Marketplace</h2>
+    </div>
+  </div>
+</div>
+
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 col-sm-6" *ngFor="let r of pagedProducts; let i = index">
+          <div class="card mb-4">
+            <img [src]="getImageUrl(r)" class="card-img-top" alt="Product Image">
+            <div class="card-body">
+              <h5 class="card-title">{{ r.name }}</h5>
+              <p class="card-text">Price: {{ r.price }}</p>
+              <p class="card-text">ID: {{ r.idProduct }}</p>
+              <button (click)="openModal(r)" class="btn btn-primary mt-2">Show Details</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pagination-container d-flex justify-content-center mt-4" [class.d-none]="selectedProduct">
+    <ul class="pagination">
+      <li class="page-item" [class.disabled]="currentPage == 1" (click)="onPageChange(currentPage - 1)">
+        <a class="page-link" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      <li class="page-item" *ngFor="let page of pages" [class.active]="page === currentPage">
+        <a class="page-link" (click)="onPageChange(page)">{{ page }}</a>
+      </li>
+      <li class="page-item" [class.disabled]="currentPage == totalPages" (click)="onPageChange(currentPage + 1)">
+        <a class="page-link" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  
+          
+          
+          
+       
+        </div>
+        
+
+    
+    
+    <!-- Modal -->
+    <div class="custom-modal" tabindex="-1" role="dialog" *ngIf="selectedProduct">
+      <div class="custom-modal-dialog" role="document">
+        <div class="custom-modal-content">
+          <!-- En-tête du modal -->
+          <div class="custom-modal-header bg-primary text-white">
+            <h5 class="custom-modal-title"></h5>
+            <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <!-- Corps du modal -->
+          <div class="custom-modal-body">
+            <div class="row">
+              <div class="col-md-6">
+                <img [src]="getImageUrl(selectedProduct)" class="img-fluid" alt="Product Image">
+              </div>
+              <div class="col-md-6">
+                <p><strong>Nom:</strong> {{ selectedProduct.name }}</p>
+                <p><strong>Prix:</strong> {{ selectedProduct.price }}</p>
+                <p><strong>Description:</strong> {{ selectedProduct.description }}</p>
+                <p><strong>Type:</strong> {{ selectedProduct.type }}</p>
+                <p><strong>Quantité en stock:</strong> {{ selectedProduct.stockQuantity }}</p>
+                <button type="button" class="btn btn-primary"><i class="bi bi-cart"></i> Cart</button> <!-- Utilisation de l'icône de Bootstrap (Bootstrap Icons) -->
+
+              </div>
+            </div>
+          </div>
+          <!-- Pied de page du modal -->
+          <div class="custom-modal-footer">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+<div class="footer">
+<app-nav-bar-front [class.d-none]="selectedProduct"></app-nav-bar-front>
+
+</div>
+
+
+
+<style>
+  /* CSS pour la grille de produits */
+.row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); /* Crée des colonnes de largeur minimale 250px et s'adapte dynamiquement à la taille de l'écran */
+  grid-gap: 20px; /* Espacement entre les éléments de la grille */
+}
+
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  transform: scale(1.05); /* Agrandir la carte lors du survol */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Ajoutez une ombre lors du survol */
+}
+
+.card-img-top {
+  width: 100%;
+  height: auto;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.card-text {
+  margin-bottom: 10px;
+}
+
+.custom-modal-body {
+  display: flex;
+  align-items: center;
+}
+
+.custom-modal-body .btn-primary {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #3ea914; /* Change la couleur de fond du bouton en vert */
+  border-radius: 20px; /* Rend les coins du bouton arrondis */
+}
+
+.custom-modal-body .btn-primary i {
+  margin-right: 5px; /* Ajoute un espacement entre l'icône et le texte */
+}
+
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+}
+
+.pagination-container .pagination {
+  margin-top: 20px; /* Ajoutez une marge en haut pour l'espace */
+}
+
+.pagination-container .pagination .page-link {
+  color: #333;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 6px 12px;
+  margin: 0 3px;
+}
+
+.pagination-container .pagination .page-link:hover {
+  color: #23527c;
+  background-color: #f5f5f5;
+}
+
+.pagination-container .pagination .page-item.active .page-link {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+.card-body .btn-primary {
+  width: 40%;
+  background-color: #a96114dc; /* Change la couleur de fond du bouton en bleu */
+  border-radius: 20px; /* Rend les coins du bouton arrondis */
+}
+
+.card-body .btn-primary {
+  width: 40%;
+  
+  background-color: #a96114dc; /* Change la couleur de fond du bouton en bleu */
+  border-radius: 20px; /* Rend les coins du bouton arrondis */
+}
+
+.d-none {
+  display: none !important; /* Assurez-vous que la classe d-none a la priorité pour masquer les éléments */
+}
+
+
+</style>
