@@ -1,0 +1,19 @@
+/* Add styles if necessary for the image and button */
+.exercise-container {
+    text-align: center;
+  }
+  
+  .exercise-image {
+    max-width: 100%; /* Adjust as needed */
+    height: auto; /* Adjust as needed */
+    margin: 20px 0; /* Adjust as needed */
+  }
+  
+  .complete-exercise-btn {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+  

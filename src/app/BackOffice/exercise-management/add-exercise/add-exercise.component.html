@@ -1,0 +1,50 @@
+<div class="add-exercise-container">
+    <h2>Add New Exercise</h2>
+    <form [formGroup]="addExerciseForm" (ngSubmit)="onSubmit()" class="add-exercise-form">
+  
+      <!-- Exercise Name Field -->
+      <mat-form-field appearance="fill">
+        <mat-label>Exercise Name</mat-label>
+        <input matInput formControlName="namexercise" required>
+      </mat-form-field>
+  
+      <!-- Sets Field -->
+      <mat-form-field appearance="fill">
+        <mat-label>Sets</mat-label>
+        <input matInput type="number" formControlName="sets" required>
+      </mat-form-field>
+  
+      <!-- Reps Field -->
+      <mat-form-field appearance="fill">
+        <mat-label>Reps</mat-label>
+        <input matInput type="number" formControlName="reps" required>
+      </mat-form-field>
+  
+      <!-- Rest Period Field -->
+      <mat-form-field appearance="fill">
+        <mat-label>Rest Period (seconds)</mat-label>
+        <input matInput type="number" formControlName="repo" required>
+      </mat-form-field>
+  
+      <!-- Duration Field -->
+      <mat-form-field appearance="fill">
+        <mat-label>Duration (minutes)</mat-label>
+        <input matInput type="number" formControlName="duration" required>
+      </mat-form-field>
+  
+      <!-- Image Upload Field -->
+      <input type="file" (change)="onFileSelected($event)" accept="image/*">
+
+      <mat-form-field appearance="fill">
+        <mat-label>Exercise Day</mat-label>
+        <mat-select formControlName="exerciseDay" required>
+          <mat-option *ngFor="let day of exerciseDays" [value]="day.id">
+            Day {{ day.dayNumber }} - {{ day.date | date }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <button mat-raised-button color="primary" type="submit">Submit</button>
+    </form>
+  </div>
+  

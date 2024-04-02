@@ -1,0 +1,41 @@
+<div class="update-exercise-day-container">
+    <h2>Update Exercise Day</h2>
+    <form [formGroup]="updateExerciseDayForm" (ngSubmit)="onSubmit()" class="update-exercise-day-form">
+
+      <!-- Date Field -->
+      <mat-form-field appearance="fill">
+        <mat-label>Date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="date" required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <!-- Day Number Field -->
+      <mat-form-field appearance="fill">
+        <mat-label>Day Number</mat-label>
+        <input matInput type="number" formControlName="dayNumber" required>
+      </mat-form-field>
+
+      <!-- Total Duration Field -->
+      <mat-form-field appearance="fill">
+        <mat-label>Total Duration (minutes)</mat-label>
+        <input matInput type="number" formControlName="totalDuration" required>
+      </mat-form-field>
+
+      <!-- Completed Checkbox -->
+      <mat-checkbox formControlName="completed">Completed</mat-checkbox>
+
+      <!-- Workout Program Selector -->
+      <mat-form-field appearance="fill">
+        <mat-label>Workout Program</mat-label>
+        <mat-select formControlName="workoutProgram" required>
+          <mat-option *ngFor="let workout of workoutPrograms" [value]="workout.id_workout">
+            {{ workout.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      
+
+      <button mat-raised-button color="primary" type="submit">Update</button>
+    </form>
+</div>

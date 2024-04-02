@@ -1,0 +1,17 @@
+<p>exercise works!</p>
+<p>exercise works!</p>
+<p>exercise works!</p>
+<p>exercise works!</p>
+<div class="exercises-container">
+    <div *ngFor="let exercise of exercises" class="exercise-card">
+      <img *ngIf="exercise.image" [src]="getImageUrl(exercise.image)" alt="{{exercise.namexercise}}">
+      <div class="exercise-content">
+        <h3>{{exercise.namexercise}}</h3>
+        <p>Sets: {{exercise.sets}}</p>
+        <p>Reps: {{exercise.reps}}</p>
+        <p>Rest: {{exercise.repo}} seconds</p>
+        <p>Duration: {{exercise.duration}} minutes</p>
+      </div>
+    </div>
+  </div>
+  

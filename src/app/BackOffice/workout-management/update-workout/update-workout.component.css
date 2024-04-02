@@ -1,0 +1,26 @@
+.update-workout-container {
+    margin-top: 75px; 
+    margin-left: 305px;
+    max-width: 600px; /* Or any maximum width you prefer */
+    padding: 20px; /* Add some padding if needed */
+    background: #fff; /* Optional: if you want a different background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: for some shadow to lift the container */
+  }
+  
+  .update-workout-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* This creates space between form fields */
+  }
+  
+  /* Styling for the buttons to sit side by side with some space */
+  .update-workout-form button {
+    margin-right: 10px;
+  }
+  
+  /* Optional: Add styles for Angular Material form field globally or scoped to a component */
+  .mat-form-field {
+    width: 100%; /* Full width of its parent */
+    margin-bottom: 20px; /* Space at the bottom of each form field */
+  }
+  

@@ -1,0 +1,23 @@
+.add-exercise-day-container {
+    margin-top: 75px;
+    margin-left: 305px;
+    max-width: 600px;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.add-exercise-day-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.add-exercise-day-form button {
+    margin-right: 10px;
+}
+
+.mat-form-field {
+    width: 100%;
+    margin-bottom: 20px;
+}

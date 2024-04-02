@@ -1,0 +1,69 @@
+.workout-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 1200px; /* Adjust as needed for the overall max width */
+  }
+  
+  .workout-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: calc(33.333% - 40px); /* Three cards per row, accounting for gap */
+    background-color: white;
+    box-sizing: border-box; /* Ensures padding is included in width */
+  }
+  
+  .workout-card h3 {
+    color: #333;
+    margin-top: 0;
+  }
+  
+  .workout-card p {
+    color: #666;
+    font-size: 14px;
+  }
+  
+  .workout-card ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .workout-card li {
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  
+  @media (max-width: 768px) {
+    .workout-card {
+      width: calc(50% - 40px); /* Two cards per row on smaller screens */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .workout-card {
+      width: 100%; /* Full width for very small screens */
+    }
+  }
+  .workout-card button {
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    padding: 10px 15px; /* Padding around text */
+    margin: 10px 0; /* Margin around button */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s, transform 0.2s; /* Smooth transition for hover effects */
+}
+
+.workout-card button:hover {
+    background-color: #45a049; /* Darker shade of green on hover */
+    transform: scale(1.05); /* Slightly increase size on hover */
+}
+
+.workout-card button:active {
+    transform: scale(0.95); /* Slightly decrease size when clicked */
+}

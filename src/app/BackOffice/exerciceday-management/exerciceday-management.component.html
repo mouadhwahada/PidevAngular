@@ -1,0 +1,59 @@
+<div class="exercise-day-management">
+    <div class="search-add-bar">
+      <mat-form-field appearance="fill">
+        <mat-label>Search...</mat-label>
+        <input matInput (keyup)="applyFilter($event)">
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="addExerciseDay()">Add Exercise Day</button>
+    </div>
+  
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+  
+      <!-- Workout Name Column -->
+      <ng-container matColumnDef="workoutName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Workout Name</th>
+        <td mat-cell *matCellDef="let exerciseDay">{{ exerciseDay.workoutProgram.name }}</td>
+      </ng-container>
+  
+      <!-- Date Column -->
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+        <td mat-cell *matCellDef="let exerciseDay">{{ exerciseDay.date | date: 'longDate' }}</td>
+      </ng-container>
+      <ng-container matColumnDef="dayNumber">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Day Number</th>
+        <td mat-cell *matCellDef="let exerciseDay">{{ exerciseDay.dayNumber }}</td>
+      </ng-container>
+      <ng-container matColumnDef="completed">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Completed</th>
+        <td mat-cell *matCellDef="let exerciseDay">{{ exerciseDay.completed ? 'Yes' : 'No' }}</td>
+      </ng-container>
+      <ng-container matColumnDef="totalDuration">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Total Duration (minutes)</th>
+        <td mat-cell *matCellDef="let exerciseDay">{{ exerciseDay.totalDuration }}</td>
+      </ng-container>
+  
+      <!-- Status Column -->
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+        <td mat-cell *matCellDef="let exerciseDay">{{ exerciseDay.status }}</td>
+      </ng-container>
+  
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let exerciseDay">
+          <button mat-icon-button (click)="editExerciseDay(exerciseDay.id)" color="primary">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button (click)="deleteExerciseDay(exerciseDay.id)" color="warn">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  

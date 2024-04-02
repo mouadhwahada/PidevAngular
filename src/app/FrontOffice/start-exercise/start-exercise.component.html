@@ -1,0 +1,14 @@
+<p>start-exercise works!</p>
+<p>start-exercise works!</p>
+<p>start-exercise works!</p>
+<div class="exercise-container">
+    <div *ngIf="!showCompleteButton">
+        <h2 *ngIf="currentPhase === 'set'">Set {{ currentSet }} / {{ exercise.sets }}</h2>
+        <h2 *ngIf="currentPhase === 'rest'">Rest</h2>
+        <h1>{{ countdown }}</h1>
+    </div>
+    
+    <img *ngIf="exercise?.image" [src]="getImageUrl(exercise.image)" alt="Exercise Image" class="exercise-image">
+
+    <button *ngIf="showCompleteButton" (click)="completeExercise()" class="complete-exercise-btn">Complete Exercise</button>
+</div>

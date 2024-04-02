@@ -1,0 +1,79 @@
+/* (Add or modify your existing styles) */
+.exercise-day-container {
+    padding: 20px;
+}
+
+.exercise-day-card {
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.exercises-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.exercise-card {
+    width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+    background: #fff;
+    transition: transform 0.3s ease;
+}
+
+.exercise-card:hover {
+    transform: translateY(-5px);
+}
+
+.exercise-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.exercise-content {
+    padding: 15px;
+}
+
+.exercise-content h3 {
+    margin-top: 0;
+    color: #333;
+}
+.exercise-card {
+    width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+    background: #fff;
+    transition: transform 0.3s ease;
+    position: relative; /* For positioning the button */
+}
+
+.start-exercise-btn {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    transition: background-color 0.3s;
+}
+
+.start-exercise-btn:hover {
+    background-color: #45a049; /* Darker green */
+}
+
+/* Style for disabled button */
+.start-exercise-btn:disabled {
+    background-color: #ccc; /* Grey */
+    cursor: default;
+    color: #666; /* Dark grey text */
+}

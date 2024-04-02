@@ -1,0 +1,16 @@
+<p>workouts works!dsqfqsdfgqsdfhgqsihdgfjkqshgdfjhqsgdfjhqgsjkdhfgqsjhdfbkjqshdgfjkqsghdkfjhqsgdjkhfqshjidfjhqsgdfjhqsdfhqskldfhqsjdhfkjhqshfqs</p>
+<p>workouts works!dsqfqsdfgqsdfhgqsihdgfjkqshgdfjhqsgdfjhqgsjkdhfgqsjhdfbkjqshdgfjkqsghdkfjhqsgdjkhfqshjidfjhqsgdfjhqsdfhqskldfhqsjdhfkjhqshfqs</p>
+<p>workouts works!dsqfqsdfgqsdfhgqsihdgfjkqshgdfjhqsgdfjhqgsjkdhfgqsjhdfbkjqshdgfjkqsghdkfjhqsgdjkhfqshjidfjhqsgdfjhqsdfhqskldfhqsjdhfkjhqshfqs</p>
+
+<div class="workout-container">
+    <div *ngFor="let workout of workouts" class="workout-card" (click)="navigateToExerciseDays(workout.id_workout)">
+      <h2>{{ workout.name }}</h2>
+      <p><strong>Description:</strong> {{ workout.description }}</p>
+      <p><strong>Duration:</strong> {{ workout.duration }} minutes</p>
+      <p><strong>Target Group:</strong> {{ workout.targetGroup }}</p>
+      <p><strong>Category:</strong> {{ workout.category }}</p>
+      <button (click)="assignWorkoutToUser(1, workout.id_workout)">Take workout</button>
+
+    </div>
+  </div>
+  

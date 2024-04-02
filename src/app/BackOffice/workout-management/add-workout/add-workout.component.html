@@ -1,0 +1,39 @@
+<div class="add-workout-container">
+    <h2>Add New Workout</h2>
+    <!-- Bind the formGroup and use ngSubmit -->
+    <form [formGroup]="addWorkoutForm" (ngSubmit)="onSubmit()" class="add-workout-form">
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <!-- Use formControlName -->
+        <input matInput placeholder="Enter workout name" formControlName="name" required>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Description</mat-label>
+        <textarea matInput placeholder="Enter workout description" formControlName="description" required></textarea>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Duration (minutes)</mat-label>
+        <input matInput type="number" placeholder="Enter workout duration" formControlName="duration" required>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Target Group</mat-label>
+        <mat-select formControlName="targetGroup" required>
+          <mat-option value="Beginner">Beginner</mat-option>
+          <mat-option value="Intermediate">Intermediate</mat-option>
+          <mat-option value="Advanced">Advanced</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Category</mat-label>
+        <input matInput placeholder="Enter workout category" formControlName="category" required>
+      </mat-form-field>
+  
+      <button mat-raised-button color="primary" type="submit">Submit</button>
+  
+    </form>
+</div>
