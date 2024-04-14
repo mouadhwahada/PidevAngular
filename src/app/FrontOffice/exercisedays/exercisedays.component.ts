@@ -12,13 +12,14 @@ import { ExerciseService } from 'src/app/services/exercise.service';
 })
 export class ExercisedaysComponent implements OnInit{
   exerciseDays: ExerciseDay[] = [];
-  exercises:Exercise[]=[]
+  exercises:Exercise[]=[];
+  progress: number = 0;
 
   constructor(
     private route: ActivatedRoute,
     private exerciseDayService: ExerciseDayService,
     private exerciseService: ExerciseService
-  ) {}
+  ) {}      
 
   ngOnInit(): void {
     const workoutId = Number(this.route.snapshot.paramMap.get('id'));
@@ -27,6 +28,7 @@ export class ExercisedaysComponent implements OnInit{
       this.exerciseDays.forEach(day => {
         this.exerciseService.getExercisesByExerciseDayId(day.id).subscribe(exercises => {
           day.exercises = exercises; 
+         
         });
       });
     });

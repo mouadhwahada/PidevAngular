@@ -6,6 +6,8 @@
     <div *ngFor="let exerciseDay of exerciseDays" class="exercise-day-card">
       <h3>Day {{exerciseDay.dayNumber}} - {{exerciseDay.date | date}}</h3>
       <h4>Total duration: {{exerciseDay.totalDuration}} minutes</h4>
+     
+       
       
       <!-- Display exercises for this day -->
       <div class="exercises-container">
@@ -14,10 +16,12 @@
           <div class="exercise-content">
             <h3>{{exercise.namexercise}}</h3>
             <p>Sets: {{exercise.sets}}</p>
+
             <p>Reps: {{exercise.reps}}</p>
             <p>Rest: {{exercise.repo}} seconds</p>
             <p>Duration: {{exercise.duration}} minutes</p>
           </div>
+          
         </div>
       </div>
     </div>

@@ -43,4 +43,6 @@ export class ExerciseProgressService {
   getCompletedExercises(userId: number, idworkout: number): Observable<Exercise[]> {
     return this.http.get<Exercise[]>(`${this.apiUrl}/completedExercises/${userId}/${idworkout}`);
   }
+  
 }
+

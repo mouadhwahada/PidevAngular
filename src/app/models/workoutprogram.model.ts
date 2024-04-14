@@ -1,3 +1,5 @@
+import { ExerciseDay } from "./exercise-day.model";
+
 export class Workoutprogram {
     constructor(
         public id_workout:number,
@@ -6,6 +8,7 @@ export class Workoutprogram {
         public duration:number,
         public targetGroup:string,
         public category:string,
-    
+        public exerciseDays: ExerciseDay[],
+       public progress: number
     ){}
 }

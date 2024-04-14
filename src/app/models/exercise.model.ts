@@ -1,6 +1,7 @@
 import { ExerciseDay } from "./exercise-day.model";
 
 export class Exercise {
+    completed: any;
     constructor(
         public id_Exercice: number,
         public namexercise:string,

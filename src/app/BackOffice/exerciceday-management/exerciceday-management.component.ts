@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { forkJoin, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { WorkoutprogramService } from 'src/app/services/workoutprogram.service';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-exerciceday-management',
@@ -19,7 +20,9 @@ export class ExercicedayManagementComponent implements OnInit {
 
   workoutName!:string;
 
-  @ViewChild(MatSort, { static: true }) sort!: MatSort;
+
+  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
+
 
   constructor(
     private exerciseDayService: ExerciseDayService,
@@ -38,17 +41,50 @@ export class ExercicedayManagementComponent implements OnInit {
         this.workoutName = ed.workoutProgram?.name || 'Unknown';
       });
       this.dataSource = new MatTableDataSource(exerciseDays);
-      this.dataSource.sort = this.sort;
+  
+      this.dataSource.paginator = this.paginator;
     }, error => {
       console.error('Error occurred while fetching exercise days:', error);
      
     });
   }
+  sortData(column:string,direction:string):void{
+    
+    this.dataSource.data.sort((a:any,b:any)=>{
+      let valueA=a[column];
+      let valueB=b[column];
+      if(valueA<valueB){
+        return direction ==='asc'?-1:1;
+      }else if(valueA>valueB){
+        return direction ==='asc'?1:-1;
+      }
+      return 0;
+    })
+    this.dataSource.data=[...this.dataSource.data];
 
-  applyFilter(event: Event): void {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
+    
+    if (filterValue === '') {
+      this.loadExerciseDays();
+    } else {
+      this.exerciseDayService.getAllExerciseDays().subscribe(exerciseDays => {
+        const filteredData = exerciseDays.filter(exerciseDay =>{
+
+           return exerciseDay.workoutProgram?.name?.toLowerCase().includes(filterValue) ||
+       (exerciseDay.date instanceof Date && exerciseDay.date.toLocaleDateString().toLowerCase().includes(filterValue)) ||
+      
+               exerciseDay.dayNumber.toString().includes(filterValue) ||
+          exerciseDay.totalDuration.toString().includes(filterValue)
+          ;
+      });
+        this.dataSource = new MatTableDataSource(filteredData);
+      }
+    )
+  }
+}
 
   addExerciseDay(): void {
     this.router.navigate(['/Admin/AddExerciseDay']);

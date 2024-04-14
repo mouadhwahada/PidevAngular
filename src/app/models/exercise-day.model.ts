@@ -9,6 +9,11 @@ export class ExerciseDay {
         public completed:boolean,
         public totalDuration:number,
         public workoutProgram:Workoutprogram,
-        public exercises?:Exercise[]
+        public exercises?:Exercise[],
+      
     ){}
-}
+    
+
+    }
+
+

@@ -4,6 +4,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import { WorkoutprogramService } from 'src/app/services/workoutprogram.service';
 import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
+import { MatPaginator } from '@angular/material/paginator';
 @Component({
   selector: 'app-workout-management',
   templateUrl: './workout-management.component.html',
@@ -12,7 +13,8 @@ import { Router } from '@angular/router';
 export class WorkoutManagementComponent implements OnInit{
   dataSource!:MatTableDataSource<Workoutprogram>;
   displayedColumns:string[]=['name','description','duration','targetGroup','category','actions'];
-  @ViewChild(MatSort, {static:true}) sort!:MatSort;
+  
+  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
   constructor(private workoutService:WorkoutprogramService,private router: Router){}
   ngOnInit(): void {
     this.loadWorkoutPrograms();
@@ -20,12 +22,43 @@ export class WorkoutManagementComponent implements OnInit{
   loadWorkoutPrograms():void{
     this.workoutService.getAllWorkoutprogram().subscribe(workouts=>{
       this.dataSource=new MatTableDataSource(workouts);
-      this.dataSource.sort=this.sort;
+      this.dataSource.paginator = this.paginator;
     })
   }
+  sortData(column:string,direction:string):void{
+    
+    this.dataSource.data.sort((a:any,b:any)=>{
+      let valueA=a[column];
+      let valueB=b[column];
+      if(valueA<valueB){
+        return direction ==='asc'?-1:1;
+      }else if(valueA>valueB){
+        return direction ==='asc'?1:-1;
+      }
+      return 0;
+    })
+    this.dataSource.data=[...this.dataSource.data];
+
+  }
   applyFilter(event:Event ){
-    const filterValue= (event.target as HTMLInputElement).value;
-    this.dataSource.filter=filterValue.trim().toLowerCase();
+    const filterValue= (event.target as HTMLInputElement).value.trim().toLowerCase();
+    if(filterValue===''){
+      this.loadWorkoutPrograms();
+    }else{
+      this.workoutService.getAllWorkoutprogram().subscribe(workouts=>{
+        const filtredData=workouts.filter(workout=>{
+          return workout.name.toLowerCase().includes(filterValue) || 
+          workout.description.toLowerCase().includes(filterValue) ||
+          workout.duration.toString().includes(filterValue) ||
+          workout.targetGroup.includes(filterValue)||
+          workout.category.toLowerCase().includes(filterValue) 
+          ;
+        });
+        this.dataSource=new MatTableDataSource(filtredData);
+      })
+    }
+    
+    
     
   }
   addWorkout() {

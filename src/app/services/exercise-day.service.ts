@@ -41,4 +41,8 @@ export class ExerciseDayService {
   getExerciseDaysByWorkoutId(workoutId: number): Observable<ExerciseDay[]> {
     return this.http.get<ExerciseDay[]>(`${this.baseUrl}/workout/${workoutId}`);
   }
+   getExerciseDayProgress(exerciseDayId: number, userId: number): Observable<number> {
+
+    return this.http.get<number>(`${this.baseUrl}/progress/${exerciseDayId}/${userId}`);
+  }
 }

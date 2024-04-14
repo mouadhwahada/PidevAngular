@@ -18,7 +18,7 @@ export class ExerciseManagementComponent implements OnInit {
   dataSource!: MatTableDataSource<Exercise>;
   displayedColumns: string[] = ['name', 'sets', 'reps', 'repo', 'duration', 'image', 'exerciseDay', 'actions'];
 
-  @ViewChild(MatSort, { static: true }) sort!: MatSort;
+  
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
 
   constructor(
@@ -51,21 +51,53 @@ export class ExerciseManagementComponent implements OnInit {
         this.dataSource.data = exercises; // Refresh data source
       });
   
-      this.dataSource.sort = this.sort;
+      
       this.dataSource.paginator = this.paginator;
     }, error => {
       console.error('Error occurred while fetching exercises:', error);
     });
   }
+  sortData(column:string,direction:string):void{
+    
+    this.dataSource.data.sort((a:any,b:any)=>{
+      let valueA=a[column];
+      let valueB=b[column];
+      if(valueA<valueB){
+        return direction ==='asc'?-1:1;
+      }else if(valueA>valueB){
+        return direction ==='asc'?1:-1;
+      }
+      return 0;
+    })
+    this.dataSource.data=[...this.dataSource.data];
+
+  }
+  applyFilter(event:Event ){
+    const filterValue= (event.target as HTMLInputElement).value.trim().toLowerCase();
+    if(filterValue===''){
+      this.loadExercises();
+    }else{
+      this.exerciseService.getAllExercises().subscribe(exercices=>{
+        const filtredData=exercices.filter(exercice=>{
+          return exercice.namexercise.toLowerCase().includes(filterValue) || 
+          exercice.duration.toString().includes(filterValue) ||
+          exercice.sets.toString().includes(filterValue) ||
+          exercice.reps.toString().includes(filterValue) 
+          
+         
+          
+          ;
+        });
+        this.dataSource=new MatTableDataSource(filtredData);
+      })
+    }
   
+  }
   getImageUrl(filename: string): string {
     return `http://localhost:8070/files/get-image/${filename}`;
   }
 
-  applyFilter(event: Event): void {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
+
 
   addExercise(): void {
     this.router.navigate(['/Admin/AddExercise']);
