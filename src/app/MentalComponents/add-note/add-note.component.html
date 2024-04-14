@@ -1,33 +1,17 @@
 <div class="layout-wrapper layout-content-navbar">
-    <div class="layout-container">
-      <app-sidebar-back></app-sidebar-back>
-      <div class="layout-page">
-        <app-navbar-back></app-navbar-back>
-        <div class="form-container">
-          <h2>Add Note</h2>
-          <form [formGroup]="noteForm" (ngSubmit)="addNote()">
-            <div class="form-group">
-              <label for="valueNote">Value Note:</label>
-              <input type="number" formControlName="valueNote" class="form-control">
-            </div>
-            <div class="form-group">
-              <label for="operation">Operation:</label>
-              <input type="text" formControlName="operation" class="form-control">
-            </div>
-            <div class="form-group">
-              <label for="descNote">Description Note:</label>
-              <input type="text" formControlName="descNote" class="form-control">
-            </div>
-            <div class="form-group">
-              <label for="selectedQuiz">Select Quiz:</label>
-              <select id="selectedQuiz" formControlName="selectedQuiz" class="form-control">
-                <option *ngFor="let quiz of quizzes" [ngValue]="quiz">{{ quiz.titleQuiz }}</option>
-              </select>
-            </div>
-            <button type="submit" class="btn btn-success">Add</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-  <app-footer-back></app-footer-back>
+  <div class="layout-container">
+    <app-sidebar-back></app-sidebar-back>
+    <div class="layout-page">
+      <app-navbar-back></app-navbar-back>
+
+
+<div style="display: block; margin-top: 300px; margin-bottom: 300px; margin-left: 200px;">
+  <canvas id="pieChart" width="350" height="350"></canvas>
+</div>
+
+</div>
+</div>
+</div>
+
+
+

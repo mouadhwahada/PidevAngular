@@ -427,4 +427,34 @@
     font-size: 24px; 
 }
 
+.mood-icons {
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 20px;
+}
+
+.mood-icons mat-icon {
+  width: 40px;
+  height: 40px;
+  font-size: 30px;
+  cursor: pointer;
+  transition: font-size 0.3s; 
+}
+
+
+.mood-icons .selected {
+  color: green;
+  font-size: 35px;
+}
+
+.mood-icons .selectedneutral {
+  color: yellow; 
+  font-size: 35px;
+}
+
+.mood-icons .selectedsad {
+  color: red; 
+  font-size: 35px;
+}
+
 

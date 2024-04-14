@@ -4,6 +4,7 @@ import { AnswerService } from 'src/app/MentalService/answer.service';
 import { QuestionService } from 'src/app/MentalService/question.service';
 import { Answer } from 'src/app/mentalModels/AnswerModel';
 import { Question } from 'src/app/mentalModels/Question';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-answer',
@@ -17,7 +18,8 @@ export class AddAnswerComponent {
   constructor(
     private formBuilder: FormBuilder,
     private answerService: AnswerService,
-    private questionService: QuestionService
+    private questionService: QuestionService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -29,7 +31,7 @@ export class AddAnswerComponent {
     this.answerForm = this.formBuilder.group({
       score: ['', [Validators.required, Validators.min(0), Validators.max(100), Validators.pattern(/^\d+(\.\d{1,2})?$/)]],
       textAnswer: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(100)]],
-      selectedQuestion: ['', Validators.required]
+      
     });
   }
 
@@ -46,34 +48,32 @@ export class AddAnswerComponent {
 
   addAnswer(): void {
     if (this.answerForm.valid) {
-      const { score, textAnswer, selectedQuestion } = this.answerForm.value;
-      const selectedQuestionText: string = selectedQuestion.toString();
-      const selectedQuestionObj: Question | undefined = this.questions.find(q => q.textQ === selectedQuestionText);
-      if (selectedQuestionObj) {
+      const scoreControl = this.answerForm.get('score');
+      const textAnswerControl = this.answerForm.get('textAnswer');
+  
+      if (scoreControl && textAnswerControl && scoreControl.value && textAnswerControl.value) {
         const newAnswer: Answer = {
-          idAnswer: -1, // Assuming the backend generates the ID
-          score,
-          textAnswer,
-          question: selectedQuestionObj
+          idAnswer: 0, // Vous pouvez initialiser l'idAnswer à 0 ou à une valeur par défaut si nécessaire
+          score: scoreControl.value,
+          textAnswer: textAnswerControl.value
         };
-        this.answerService.addAnswertoQuestion(selectedQuestionObj.textQ.toString(), newAnswer).subscribe(
-          () => {
-            this.answerForm.reset();
-            alert('Answer added successfully!');
+  
+        this.answerService.addAnswer(newAnswer).subscribe(
+          (response) => {
+            console.log('Answer added successfully:', response);
+            this.toastr.success('Answer added successfully', 'Succès');
+          // Reset the form after successful submission
+          this.answerForm.reset();
           },
           (error) => {
             console.error('Error adding answer:', error);
-            alert('Failed to add answer!');
+            this.toastr.error('Error adding answer', 'Erreur');
           }
         );
-      } else {
-        console.error('Selected question not found.');
-        alert('Selected question not found.');
       }
-    } else {
-      alert('Please fill all required fields!');
     }
   }
+  
   
   
 }

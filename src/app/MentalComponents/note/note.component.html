@@ -4,33 +4,26 @@
       <div class="layout-page">
         <app-navbar-back></app-navbar-back>
   
-        <h2>List of Notes</h2>
+        <div class="list"> 
+        <h2>List of Scores</h2>
         <div class="button-container">
             <button type="button" [routerLink]="['/addNote']" class="btn btn-success">
-              <i class="fas fa-plus"></i> <!-- Icône d'ajout -->
-              Add Note
+              View Statistics
             </button>
           </div>
         <table>
           <thead>
             <tr>
               <th>Note Value</th>
-              <th>Operation</th>
               <th>Note Description</th>
-              <th>Quiz associated</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let note of notes">
               <td>{{ note.valueNote }}</td>
-              <td>{{ note.operation }}</td>
               <td>{{ note.descNote }}</td>
-              <td>{{ note.quiz.titleQuiz }}</td>
               <td>
-                <button class="btn btn-primary" [routerLink]="['/updateNote', note.idNote]">
-                  <i class="fa fa-edit fa-lg"></i> Edit
-                </button>
                 <button class="btn btn-danger" (click)="deleteNote(note)">
                   <i class="fa fa-trash fa-lg"></i> Delete
                 </button>
@@ -38,6 +31,8 @@
             </tr>
           </tbody>
         </table>
+
+        </div> 
       </div>
     </div>
   </div>

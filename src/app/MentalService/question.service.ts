@@ -33,6 +33,12 @@ export class QuestionService {
     const url = `${this.baseUrl}/getAnswersForQuestion/${questionId}`;
     return this.http.get<Answer[]>(url);
   }
-  
+  addAnswerToQuestion(idQuestion: number, idAnswer: number): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/addAnswerToQuestion/${idQuestion}/${idAnswer}`, {});
+  }
+
+  removeAnswerFromQuestion(idQuestion: number, idAnswer: number): Observable<any> {
+    return this.http.delete<any>(`${this.baseUrl}/removeAnswerFromQuestion/${idQuestion}/${idAnswer}`, {});
+  }
 
 }

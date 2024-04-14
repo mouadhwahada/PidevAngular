@@ -19,6 +19,8 @@ import { ShowComponent } from './MentalComponents/show/show.component';
 import { AllTemplateFrontComponent } from './FrontOffice/all-template-front/all-template-front.component';
 import { QuizClientComponent } from './MentalComponents/quiz-client/quiz-client.component';
 import { QuizNotifyComponent } from './MentalComponents/quiz-notify/quiz-notify.component';
+import { QuizShowComponent } from './MentalComponents/quiz-show/quiz-show.component';
+import { AcceuilMentalComponent } from './MentalComponents/acceuil-mental/acceuil-mental.component';
 
 
 
@@ -44,7 +46,9 @@ const routes: Routes = [
   {path: 'quiz-details/:id', component:ShowComponent},
   {path: 'quiz-client', component:QuizClientComponent},
   {path: 'quiz-notify', component:QuizNotifyComponent},
-  {path: 'show-result', component:ShowComponent}
+  {path: 'show', component:ShowComponent},
+  {path: 'show-quiz', component:QuizShowComponent},
+  {path: 'acc', component:AcceuilMentalComponent}
 
 
 

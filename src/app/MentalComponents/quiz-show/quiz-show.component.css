@@ -1,0 +1,125 @@
+
+/* Style du formulaire */
+div {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  select {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Style du tableau */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  tr:hover {
+    background-color: #ddd;
+  }
+  
+  /* Style du bouton "Remove" */
+  button.remove-button {
+    background-color: #dc3545;
+  }
+  
+  button.remove-button:hover {
+    background-color: #c82333;
+  }
+
+  .remove-button-list {
+    padding: 0;
+    margin: 0;
+  }
+  
+  .remove-button-list li {
+    list-style: none;
+    margin-bottom: 5px; /* Ajustez la marge comme nécessaire */
+  }
+
+  .quiz-table{
+    width: 80%;
+  }
+  .table-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .quiz-column {
+    max-width: 200px; 
+  }
+  #quizSelect{
+    width: 1000px;
+  }
+  .group{
+    margin-left: 200px;
+  }
+  .cont{
+    margin-left: 200px;
+    margin-bottom: 500px;
+  }
+  
+  
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+  }
+  
+  .content {
+    text-align: center;
+  }
+  .content h2{
+    color: #dc3545;
+    margin-bottom: 50px;
+  }
+  
+  .input-group {
+    margin-bottom: 20px;
+  }
+  
+  .input-group label {
+    margin-right: 10px;
+  }
+  #questionSelect{
+    width: 800px;
+  }
+  #quizSelect{
+    width: 400px;
+  }
+  
+  

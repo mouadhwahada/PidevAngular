@@ -25,5 +25,8 @@ export class NoteService {
   UpdateNote(noteId: number, updatedNote: Note): Observable<Note> {
     return this.http.put<Note>(`${this.baseUrl}/UpdateNote/${noteId}`, updatedNote);
   }
+  getStatisticsOfNotes(): Observable<number[]> {
+    return this.http.get<number[]>(this.baseUrl + '/StatisticsOfNotes');
+  }
 
 }

@@ -37,10 +37,8 @@ export class QuizClientComponent {
   totalStars: number = 5;
   showPreview: boolean = true;
   selectedquiz: any;
+  selectedMoodMap: Map<number, string> = new Map<number, string>();
 
-
-
-  
 
 
 
@@ -74,7 +72,9 @@ getStarColor(index: number): string {
   return index <= this.userRating! ? '#fdd835' : '#ccc'; // Couleur jaune pour les étoiles sélectionnées, gris pour les autres
 }
 
-
+selectMood(mood: string, questionId: number): void {
+  this.selectedMoodMap.set(questionId, mood);
+}
 
 
 
@@ -195,29 +195,21 @@ showResult(): void {
 
  this.quizService.calculateQuizScore(this.selectedAnswerIds).subscribe(
    (score: number) => {
-     // Calcul du score réussi
      this.quizScore = score;
-
-     // Évaluation du score pour obtenir la description
      this.quizService.evaluateQuizScore(this.quizScore).subscribe(
        (result: string) => {
-         // Stockez la description dans la variable scoreDescription
          this.scoreDescription = result;
-         // Désactiver l'état de chargement
          this.loading = false;
-         // Activer l'affichage du résultat
          this.showResultFlag = true;
        },
        (error: any) => {
          console.error('Error evaluating quiz score:', error);
-         // En cas d'erreur, désactiver l'état de chargement
          this.loading = false;
        }
      );
    },
    (error: any) => {
      console.error('Error calculating quiz score:', error);
-     // En cas d'erreur, désactiver l'état de chargement
      this.loading = false;
    }
  );

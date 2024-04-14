@@ -4,9 +4,11 @@
         <div class="layout-container">
             <app-sidebar-back></app-sidebar-back>
             <div class="layout-page">
-                <app-navbar-back></app-navbar-back>
+<app-navbar-back></app-navbar-back>
+                <div class="addQuestion">
+                <h2>Add Question</h2>
                 <div class="form-container">
-                    <h2>Add Question</h2>
+                    
                     <form [formGroup]="questionForm" (ngSubmit)="addQuestion()">
                         <div class="form-group">
                             <label for="charQ">Choose Lettre</label>
@@ -33,15 +35,21 @@
                                 The question cannot exceed 300 characters.
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="quizSelect">Select Quiz:</label>
-                            <select id="quizSelect" formControlName="selectedQuiz" class="form-control">
-                                <option *ngFor="let quiz of quizzes" [ngValue]="quiz">{{ quiz.titleQuiz }}</option>
-                            </select>
-                        </div>
                         <button type="submit" class="btn btn-success">Add</button>
                     </form>
-                </div>
+                    <div class="gotoshow">
+                        <button type="button" class="btn btn-primary" [routerLink]="['/show']">
+                            <mat-icon>add</mat-icon> 
+                            <span class="button-text">Add Answers</span>
+                        </button>
+                    </div>
+                    
+
+                    </div>
+                    
+                
+</div>
+                
             </div>
         </div>
     </div>

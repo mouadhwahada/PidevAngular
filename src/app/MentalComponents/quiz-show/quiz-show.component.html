@@ -1,0 +1,62 @@
+<div class="layout-wrapper layout-content-navbar">
+  <div class="layout-container">
+    <app-sidebar-back></app-sidebar-back>
+    <div class="layout-page">
+      <div class="cont">
+        <div class="container">
+          <div class="content">
+            <h2>Add or Remove Questions for Quizzes</h2>
+            <div class="group">
+              <div class="input-group">
+                <label for="quizSelect">Select a Quiz:</label>
+                <select id="quizSelect" #quizSelect>
+                  <option *ngFor="let quiz of quizzes" [value]="quiz.idQuiz">{{ quiz.titleQuiz }}</option>
+                </select>
+              </div>
+              <div class="input-group">
+                <label for="questionSelect">Select a Question:</label>
+                <select id="questionSelect" #questionSelect>
+                  <option *ngFor="let question of availableQuestions" [value]="question.idQuestion">{{ question.textQ }}</option>
+                </select>
+                <button (click)="addQuestionToQuiz(+quizSelect.value, +questionSelect.value)">Add Question</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-container">
+          <table class="quiz-table">
+            <thead>
+              <tr>
+                <th class="quiz-column">Quiz Title</th>
+                <th>Questions</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let quiz of quizzes">
+                <td class="quiz-column">{{ quiz.titleQuiz }}</td>
+                <td>
+                  <ul>
+                    <li *ngFor="let question of quiz.questionList">
+                      {{ question.textQ }}
+                    </li>
+                  </ul>
+                </td>
+                <td>
+                  <ul class="remove-button-list">
+                    <li *ngFor="let question of quiz.questionList">
+                      <button class="remove-button" (click)="removeQuestionFromQuiz(quiz.idQuiz, question.idQuestion)"><i class="fa fa-trash fa-lg"></i>Remove</button>
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer-back></app-footer-back>

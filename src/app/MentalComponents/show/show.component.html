@@ -1,22 +1,66 @@
-<div class="container">
-  <h2>Quiz Results</h2>
-  <div *ngIf="quizResults.length > 0; else noResults">
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Quiz Title</th>
-          <th>Score</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let result of quizResults">
-          <td>{{ result.title }}</td>
-          <td>{{ result.score }}</td>
-        </tr>
-      </tbody>
-    </table>
+<div class="layout-wrapper layout-content-navbar">
+  <div class="layout-container">
+    <app-sidebar-back></app-sidebar-back>
+    <div class="layout-page">
+
+      <div class="cont">
+        <div class="container">
+          <div class="content">
+            <h2>Add or Remove Answers for Questions</h2>
+            <div class="group">
+              <div class="input-group">
+                <label for="questionSelect">Select a Question:</label>
+                <select id="questionSelect" #questionSelect>
+                  <option *ngFor="let question of questions" [value]="question.idQuestion">{{ question.textQ }}</option>
+                </select>
+              </div>
+              <div class="input-group">
+                <label for="answerSelect">Select an Answer:</label>
+                <select id="answerSelect" #answerSelect>
+                  <option *ngFor="let answer of availableAnswers" [value]="answer.idAnswer">{{ answer.textAnswer }}</option>
+                </select>
+                <button (click)="addAnswerToQuestion(+questionSelect.value, +answerSelect.value)">Add Answer</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-container">
+          <table class="question-table">
+            <thead>
+              <tr>
+                <th class="question-column">Question</th>
+                <th>Answer</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let question of questions">
+                <td class="question-column">{{ question.textQ }}</td>
+                <td>
+                  <ul>
+                    <li *ngFor="let answer of question.answerList">
+                      {{ answer.textAnswer }}
+                    </li>
+                  </ul>
+                </td>
+                <td>
+                  <ul class="remove-button-list">
+                    <li *ngFor="let answer of question.answerList">
+                      <button class="remove-button" (click)="removeAnswerFromQuestion(question.idQuestion, answer.idAnswer)">
+                        <i class="fa fa-trash fa-lg" 
+                      style="margin-right: 10px;"></i>Remove</button>
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
   </div>
-  <ng-template #noResults>
-    <p>No quiz results available.</p>
-  </ng-template>
 </div>
+
+<app-footer-back></app-footer-back>

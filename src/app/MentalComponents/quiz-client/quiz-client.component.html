@@ -141,34 +141,41 @@
 
 <!-- Modal de prévisualisation -->
 <div class="modal" id="previewModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Preview Quiz</h5>
-          <button type="button" class="close custom-close-button" aria-label="Close" (click)="closePreviewModal()">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <!-- Contenu de l'aperçu du quiz -->
-          <ng-container *ngIf="selectedQuiz!">
-            <p>{{ selectedQuiz.titleQuiz }}</p>
-            <h4>Questions:</h4>
-            <div *ngFor="let question of questionsWithAnswers">
-              <p>{{ question.charQ }}-{{ question.textQ }}</p>
-              <ul>
-                <li *ngFor="let answer of question.answerList">{{ answer.textAnswer }}</li>
-              </ul>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Preview Quiz</h5>
+        <button type="button" class="close custom-close-button" aria-label="Close" (click)="closePreviewModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      
+      <!-- Contenu de l'aperçu du quiz -->
+      <div class="modal-body">
+        <ng-container *ngIf="selectedQuiz">
+          <p>{{ selectedQuiz.titleQuiz }}</p>
+          <h4>Questions:</h4>
+          <div *ngFor="let question of questionsWithAnswers">
+            <p>{{ question.textQ }}</p>
+            <ul>
+              <li *ngFor="let answer of question.answerList">{{ answer.textAnswer }}</li>
+            </ul>
+            <div class="mood-icons">
+              <mat-icon (click)="selectMood('happy', question.idQuestion)" [ngClass]="{ 'selected': selectedMoodMap.get(question.idQuestion) === 'happy' }">mood</mat-icon>
+              <mat-icon (click)="selectMood('neutral', question.idQuestion)" [ngClass]="{ 'selectedneutral': selectedMoodMap.get(question.idQuestion) === 'neutral' }">sentiment_neutral</mat-icon>
+              <mat-icon (click)="selectMood('sad', question.idQuestion)" [ngClass]="{ 'selectedsad': selectedMoodMap.get(question.idQuestion) === 'sad' }">mood_bad</mat-icon>
             </div>
-          </ng-container>
-          
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" (click)="closePreviewModal()">Close</button>
-        </div>
+          </div>
+        </ng-container>
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closePreviewModal()">Close</button>
       </div>
     </div>
   </div>
+</div>
+
 
   
   

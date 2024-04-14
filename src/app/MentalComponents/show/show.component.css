@@ -1,28 +1,154 @@
-.question-details-container {
-    display: flex;
-    justify-content: center;
-  }
-  
-  .question-details {
-    margin-right: 20px;
-  }
-  
-  .answer-list {
-    border-left: 2px solid #ccc;
-    padding-left: 20px;
-  }
-  
-  .answer-list h3 {
-    margin-top: 0;
-    font-size: 18px;
-  }
-  
-  .answer-list ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .answer-list li {
-    margin-bottom: 5px;
-  }
-  
+.layout-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.layout-container {
+  display: flex;
+  flex-grow: 1; /* Permet au conteneur de s'étendre pour remplir l'espace disponible */
+}
+
+.layout-page {
+  flex-grow: 1; /* Permet au contenu de remplir l'espace disponible */
+}
+
+.app-navbar-back {
+  /* Styles pour positionner le composant navbar en haut de son conteneur parent */
+  order: -1; /* Pour placer le composant navbar en premier dans l'ordre d'affichage */
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* Assure que le navbar reste au-dessus des autres éléments */
+  background-color: #fff; /* Vous pouvez ajuster la couleur selon votre design */
+  width: 100%; /* Assure que le navbar occupe toute la largeur */
+}
+.app-footer-back {
+  /* Styles pour positionner le composant footer en bas de la page */
+  position: absolute;
+  bottom: 0;
+}
+
+
+
+
+
+
+
+
+
+/* Style du formulaire */
+div {
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+select {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+button {
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Style du tableau */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #ddd;
+}
+
+/* Style du bouton "Remove" */
+button.remove-button {
+  background-color: #dc3545;
+}
+
+button.remove-button:hover {
+  background-color: #c82333;
+}
+
+.remove-button-list {
+  padding: 0;
+  margin: 0;
+}
+
+.remove-button-list li {
+  list-style: none;
+  margin-bottom: 5px; /* Ajustez la marge comme nécessaire */
+}
+
+.question-table{
+  width: 60%;
+}
+.table-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.question-column {
+  max-width: 200px; 
+}
+#questionSelect{
+  width: 1000px;
+}
+.group{
+  margin-left: 200px;
+}
+.cont{
+  margin-left: 200px;
+  margin-bottom: 500px;
+}
+
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.content {
+  text-align: center;
+}
+.content h2{
+  color: #dc3545;
+  margin-bottom: 50px;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  margin-right: 10px;
+}
+

@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import Chart from 'chart.js/auto';
+import { HttpClient } from '@angular/common/http';
+
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NoteService } from 'src/app/MentalService/note.service';
 import { QuizService } from 'src/app/MentalService/quiz.service';
@@ -11,64 +14,51 @@ import { Quiz } from 'src/app/mentalModels/QuizModel';
   styleUrls: ['./add-note.component.css']
 })
 export class AddNoteComponent {
-  noteForm!: FormGroup;
-  quizzes: Quiz[] = [];
+  pieChart: any;
+  criticalLevelCount: number = 0;
+  attentionRequiredCount: number = 0;
+  goodStateCount: number = 0;
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private noteService: NoteService,
-    private quizService: QuizService
-  ) { }
+  constructor(private http: HttpClient , private noteService: NoteService) { }
 
   ngOnInit(): void {
-    this.initForm();
-    this.fetchQuizzes();
+    this.fetchStatistics();
   }
 
-  initForm(): void {
-    this.noteForm = this.formBuilder.group({
-      valueNote: ['', Validators.required],
-      operation: ['', Validators.required],
-      descNote: ['', Validators.required],
-      selectedQuiz: ['', Validators.required]
-    });
-  }
-
-  fetchQuizzes(): void {
-    this.quizService.findAllQuizzes().subscribe(
-      (quizzes: Quiz[]) => {
-        this.quizzes = quizzes;
+  fetchStatistics(): void {
+    this.noteService.getStatisticsOfNotes().subscribe(
+      (data: number[]) => {
+        this.showPieChart(data);
       },
-      (error) => {
-        console.error('Error fetching quizzes:', error);
+      (error: any) => {
+        console.error('Error fetching statistics:', error);
       }
     );
   }
-
-  addNote(): void {
-    if (this.noteForm.valid) {
-      const { valueNote, operation, descNote, selectedQuiz } = this.noteForm.value;
-      const note: Note = { 
-        idNote: -1, // Vous devez inclure idNote ici
-        valueNote, 
-        operation, 
-        descNote, 
-        quiz: selectedQuiz 
-      };
-      this.noteService.addNoteToQuiz(selectedQuiz.titleQuiz, note).subscribe(
-        (response) => {
-          console.log('Note added successfully:', response);
-          this.noteForm.reset();
-          alert('Note added successfully!');
-        },
-        (error) => {
-          console.error('Error adding note:', error);
-          alert('Failed to add note: ' + error.message);
-        }
-      );
-    } else {
-      alert('Please fill all required fields correctly and select a quiz!');
-    }
+  
+  showPieChart(data: number[]): void {
+    const labels = ['Critical Level', 'Attention Required', 'Good State'];
+    const backgroundColors = ['rgba(255, 99, 132, 0.5)', 'rgba(54, 162, 235, 0.5)', 'rgba(255, 206, 86, 0.5)'];
+  
+    this.pieChart = new Chart('pieChart', {
+      type: 'pie',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Statistics of Notes',
+          data: data,
+          backgroundColor: backgroundColors,
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false
+      }
+    });
   }
+  
+  
+  
 
 }

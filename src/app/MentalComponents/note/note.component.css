@@ -77,3 +77,9 @@ tr:nth-child(even) {
 .button-container button:hover {
   background-color: #218838; /* Légèrement plus foncé au survol pour indiquer l'interaction */
 }
+.list{
+  margin-top: 300px;
+  width: 90%;
+  margin-left: 180px;
+  margin-bottom: 500px;
+}

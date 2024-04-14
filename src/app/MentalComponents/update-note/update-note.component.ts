@@ -37,7 +37,6 @@ export class UpdateNoteComponent {
       this.note = note;
       this.updateNoteForm.patchValue({
         valueNote: note.valueNote,
-        operation: note.operation,
         descNote: note.descNote
 
 

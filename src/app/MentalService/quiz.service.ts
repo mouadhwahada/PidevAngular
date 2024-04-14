@@ -38,12 +38,12 @@ export class QuizService {
   evaluateQuizScore(quizScore: number): Observable<string> {
     return this.http.post(`${this.baseUrl}/evaluateQuizScore/${quizScore}`, null, { responseType: 'text' });
 }
-quizResults: { title: string, score: number }[] = [];
-addQuizResult(title: string, score: number): void {
-  this.quizResults.push({ title, score });
+addQuestionToQuiz(idQuiz: number, idQuestion: number): Observable<any> {
+  return this.http.post<any>(`${this.baseUrl}/addQuestionToQuiz/${idQuiz}/${idQuestion}`, {});
 }
 
-getQuizResults(): { title: string, score: number }[] {
-  return this.quizResults;
+removeQuestionFromQuiz(idQuiz: number, idQuestion: number): Observable<any> {
+  return this.http.delete<any>(`${this.baseUrl}/removeQuestionFromQuiz/${idQuiz}/${idQuestion}`);
 }
+
 }

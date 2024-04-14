@@ -31,18 +31,16 @@ export class AddQuizComponent {
   addQuiz(): void {
     if (this.quizForm.valid) {
       const newQuiz: Quiz = this.quizForm.value as Quiz;
-      this.quizService.addQuiz(newQuiz).subscribe(
-        () => {
-          this.quizForm.reset();
-          this.notificationService.sendNotification('New quiz added!');
-        },
-        error => {
-          console.error('Error adding quiz:', error);
-          this.toastr.error('Failed to add quiz!', 'Error');
-        }
-      );
+      console.log('New Quiz:', newQuiz);
+      this.quizService.addQuiz(newQuiz).subscribe(() => {
+        this.quizForm.reset();
+        alert('Quiz added successfully!');
+      }, error => {
+        console.error('Error adding quiz:', error);
+        alert('Failed to add quiz!');
+      });
     } else {
-      this.toastr.warning('Please fill all required fields!', 'Warning');
+      alert('Please fill all required fields!');
     }
   }
 

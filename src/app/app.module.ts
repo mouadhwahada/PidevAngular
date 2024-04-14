@@ -39,6 +39,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { CommonModule } from '@angular/common';
+import { QuizShowComponent } from './MentalComponents/quiz-show/quiz-show.component';
+import { AcceuilMentalComponent } from './MentalComponents/acceuil-mental/acceuil-mental.component';
 
 
 
@@ -73,6 +75,8 @@ import { CommonModule } from '@angular/common';
     QuizClientComponent,
     QuizNotifyComponent,
     RatingComponent,
+    QuizShowComponent,
+    AcceuilMentalComponent,
   
    
     

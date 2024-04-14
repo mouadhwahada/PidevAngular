@@ -1,25 +1,4 @@
-.form-container {
-    width: 400px; /* Largeur du formulaire */
-            padding: 20px; /* Espacement interne du formulaire */
-            border: 1px solid #ddd; /* Bordure du formulaire */
-            border-radius: 5px; /* Coins arrondis */
-            margin-left: 700px;
-            margin-top: 100px;
-}
-
-/* Centrer le titre */
-h2 {
-    text-align: center;
-    margin-bottom: 20px; /* Espacement en bas du titre */
-}
-
-/* Centrer le bouton "Add" */
-.btn-success {
-    display: block; /* Faire du bouton un élément de bloc */
-    margin: 0 auto; /* Centrer horizontalement */
-    margin-top: 20px; /* Espacement en haut du bouton */
-}
-    
+ 
 .layout-wrapper {
     display: flex;
     flex-direction: column;
@@ -48,10 +27,3 @@ h2 {
     position: absolute;
     bottom: 0;
 }
-
-.error-message {
-    color: red;
-    font-size: 14px;
-    font-style: italic;
-    margin-top: 5px;
-  }

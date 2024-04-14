@@ -1,17 +1,24 @@
 .form-container {
     width: 400px; /* Largeur du formulaire */
-            padding: 20px; /* Espacement interne du formulaire */
+            padding: 50px 100px; /* Espacement interne du formulaire */
             border: 1px solid #ddd; /* Bordure du formulaire */
             border-radius: 5px; /* Coins arrondis */
             margin-left: 700px;
-            margin-top: 100px;
-            margin: 250px auto  200px 730px ; 
+            margin-top: 200px;
+            margin: 100px auto  200px 650px ; 
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centrer horizontalement */
+            justify-content: center; /* Centrer verticalement */
+            
 }
 
 /* Centrer le titre */
 h2 {
     text-align: center;
-    margin-bottom: 20px; /* Espacement en bas du titre */
+    margin-top: 200px;
+    margin-bottom: -70px;
+    margin-left: 180px;
 }
 
 /* Centrer le bouton "Add" */
@@ -56,3 +63,14 @@ h2 {
     font-style: italic;
     margin-top: 5px;
   }
+
+  .gotoshow button{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+  }
+  .addQuestion{
+    margin-top: 300px;
+   
+  }
+ 

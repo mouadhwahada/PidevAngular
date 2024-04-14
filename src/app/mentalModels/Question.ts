@@ -6,6 +6,6 @@ export class Question {
     charQ!: String;
     textQ!: String;
     answerList!: Answer[];
-    quiz!: Quiz | null;
+    
     
 }

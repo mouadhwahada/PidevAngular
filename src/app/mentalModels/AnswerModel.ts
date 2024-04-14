@@ -5,7 +5,7 @@ export class Answer {
     idAnswer!: number;
     score!: number;
     textAnswer!: string;
-    question!: Question;
+    
     
     
 }
