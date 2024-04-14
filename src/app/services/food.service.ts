@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Food } from '../models/Food';
@@ -41,7 +41,15 @@ getFoodDetails(foodName: string): Observable<Food> {
     const params = new HttpParams().set('goal', goal);
     return this.http.get<Food[]>(this.baseUrl, { params });
   }
-  
+  importExcel(file: File): Observable<any> {
+    const formData: FormData = new FormData();
+    formData.append('file', file);
+
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'multipart/form-data');
+
+    return this.http.post<any>(`${this.baseUrl}/import/excel`, formData, { headers });
+  }
   
   
 }

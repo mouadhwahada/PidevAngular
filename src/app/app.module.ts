@@ -34,6 +34,8 @@ import { FooterFrontComponent } from "./FrontOffice/footer-front/footer-front.co
 import { NavBarFrontComponent } from "./FrontOffice/nav-bar-front/nav-bar-front.component";
 import { BodyFrontComponent } from "./FrontOffice/body-front/body-front.component";
 import { NutritionComponent } from './nutrition/nutrition.component';
+import { MatPaginatorModule } from "@angular/material/paginator";
+
 
 
 
@@ -70,6 +72,8 @@ import { NutritionComponent } from './nutrition/nutrition.component';
     NavBarFrontComponent,
     BodyFrontComponent,
     NutritionComponent,
+    
+   
   
     
     
@@ -85,7 +89,9 @@ import { NutritionComponent } from './nutrition/nutrition.component';
     MatTableModule,
     MatFormFieldModule,
     MatInputModule,
-    MatIconModule
+    MatIconModule,
+    MatPaginatorModule,
+  
    
    
  

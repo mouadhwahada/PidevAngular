@@ -55,5 +55,39 @@ h2 {
     /* Styles pour positionner le composant footer en bas de la page */
    margin: 50px;
 }
-
+.drop-zone {
+    border: 2px dashed #ccc;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .drop-zone p {
+    margin: 0;
+  }
+  
+  .drop-zone.drag-over {
+    background-color: #f0f0f0;
+  }
+ 
+  
+ 
+  
+  .file-label {
+    font-size: 18px;
+    background-color: #4cec4c;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .file-label:hover {
+    background-color: #4cec4c;
+  }
+  
+  input[type="file"] {
+    display: none;
+  }
+    
 

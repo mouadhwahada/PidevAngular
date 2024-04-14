@@ -20,6 +20,24 @@
 }
 
 /* Autres styles restent inchangés */
+.progress-circle-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.percentage {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Ajustez ces valeurs selon votre préférence pour positionner correctement le texte à côté du cercle */
+.percentage {
+  margin-top: 0px;
+}
+
+
 
 .a{
 
