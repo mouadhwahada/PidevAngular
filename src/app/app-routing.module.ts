@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 
+
 import { AllTemplateBackComponent } from './BackOffice/all-template-back/all-template-back.component';
 import { FoodComponent } from './Food/food/food.component';
 import { AddFoodComponent } from './add-food/add-food.component';
@@ -35,9 +36,14 @@ const routes: Routes = [
 
 ];
 
+
+
+
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
+
 
