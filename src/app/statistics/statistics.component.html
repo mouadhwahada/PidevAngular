@@ -112,7 +112,7 @@
               <div class="card widget-card border-light shadow-sm">
                 <div class="card-body p-4">
                   <div class="row">
-                    <div class="col-8">
+                    <div class="col-8" (click)="openOrdersModall()">
                       <h5 class="card-title widget-card-title mb-3">Orders</h5>
                       <h4 class="card-subtitle text-body-secondary m-0">{{ totalOrderCount}}</h4>
                     </div>
@@ -146,6 +146,24 @@
     </div>
   </section>
 
+  
+  <div class="custom-modal" tabindex="-1" role="dialog" *ngIf="openOrdersModal">
+    <div class="custom-modal-dialog" role="document">
+      <div class="custom-modal-content">
+        <div class="custom-modal-header bg-primary text-white">
+
+        <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+          <span aria-hidden="true">&times;</span>
+      </button>
+      </div>
+    </div>
+
+        <div class="custom-modal-body">
+          <canvas id="orderChart" width="300" height="400"></canvas>
+        </div>
+      </div>
+    </div>
+  
 
   <section>
 

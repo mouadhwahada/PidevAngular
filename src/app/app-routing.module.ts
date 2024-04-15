@@ -21,6 +21,7 @@ import { Checkout22Component } from './checkout22/checkout22.component';
 import { ShopbackComponent } from './shopback/shopback.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { DemoComponent } from './demo/demo.component';
+import { MedComponent } from './med/med.component';
 
 const routes: Routes = [
   {
@@ -51,6 +52,8 @@ const routes: Routes = [
   { path:  'shopback', component: ShopbackComponent},
   { path:  'stats', component: StatisticsComponent},
   { path:  'demo', component: DemoComponent},
+  { path:  'med', component: MedComponent},
+
 
   
 

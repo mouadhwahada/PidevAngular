@@ -8,3 +8,63 @@
      /* Prend la largeur totale de la colonne */
   }
   
+  
+.custom-modal-container::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Couleur de fond semi-transparente */
+    z-index: 9998; /* Assure que le fond reste en arrière-plan */
+  }
+  
+  /* Styles pour le contenu du modal */
+  .custom-modal-dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-40%, -60%);
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 9999; /* Assure que le contenu du modal reste au-dessus du fond semi-transparent */
+    max-width: 50%; /* Taille maximale du modal */
+    width: 500; /* Largeur par défaut du modal */
+    height: 400px;
+    scrollbar-width: thin; /* Largeur de la barre de défilement */
+    scrollbar-color: rgba(178, 165, 165, 0.945) transparent; /* Couleur de la barre de défilement */ /* Vous pouvez ajuster cette valeur en fonction de la hauteur souhaitée */
+
+  }
+
+
+  .custom-modal-dialog::-webkit-scrollbar-track {
+    background-color: transparent; /* Couleur de fond de la piste de défilement */
+}
+
+.custom-modal-dialog::-webkit-scrollbar-thumb {
+    background-color: rgb(255, 252, 252); /* Couleur de la poignée de défilement */
+    border-radius: 3px; /* Rayon de bordure de la poignée de défilement */
+}
+
+/* CSS pour le bouton de fermeture du modal */
+.close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 0.5rem; /* Taille de la police très petite */
+    color: #000;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+    padding: 2px; /* Ajout d'un peu de rembourrage pour un clic plus facile */
+  }
+  
+  .close:hover {
+    opacity: 0.8;
+  }
+  
+  .close:focus {
+    outline: none;
+  }
+  

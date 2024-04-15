@@ -1,6 +1,6 @@
 .table-container {
     margin-top: 100px;
-        max-height: 800px;
+        max-height: 1200px;
        /* Retire la barre de défilement horizontale */
 
          /* Activer le défilement vertical lorsque le contenu dépasse la hauteur maximale */
@@ -51,12 +51,12 @@
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-70%, -60%);
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     z-index: 9999; /* Assure que le contenu du modal reste au-dessus du fond semi-transparent */
-    max-width: 60%; /* Taille maximale du modal */
+    max-width: 50%; /* Taille maximale du modal */
     width: 370px; /* Largeur par défaut du modal */
     overflow-y: auto; /* Activation du défilement vertical si le contenu dépasse la hauteur maximale */
     height: 400px;
@@ -160,3 +160,4 @@
   color: #333; /* Couleur du texte */
   margin-bottom: 20px; /* Espacement en bas de la phrase */
 }
+

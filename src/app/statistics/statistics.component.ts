@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Product } from '../Models/Product';
 import { Router } from '@angular/router';
-import { Chart } from 'chart.js';
+import { Chart, registerables } from 'chart.js/auto';
 import { ProductServiceService } from '../product-service.service';
 import { OrderService } from '../order.service';
 
@@ -11,12 +11,15 @@ import { OrderService } from '../order.service';
   styleUrls: ['./statistics.component.css']
 })
 export class StatisticsComponent {
+
   totalOrderCount: number;
   totalPaymentAmount: number;
   totalProductsSoldInTransit: number;
 
+
   constructor(private router:Router,
-    private productService: ProductServiceService, private orderService: OrderService) { }
+    private productService: ProductServiceService, private orderService: OrderService,
+  ) { Chart.register(...registerables); }
     
 
   products:Product[];
@@ -25,6 +28,8 @@ export class StatisticsComponent {
   productChart: any;
   productTypes: string[] = [];
   productCounts: number[] = [];
+  chartData: number[];
+
 
 
   
@@ -42,6 +47,8 @@ this.productService.getProducts().subscribe(res => this.products = res);
         this.fetchTotalOrderCount();
         this.fetchTotalPaymentAmount();
         this.fetchTotalProductsSoldInTransit();
+        this.getOrderCounts();
+
 
   }
 
@@ -76,7 +83,7 @@ var myChart = new Chart(ctx, {
   data: {
     labels: this.productTypes,
     datasets: [{
-      label: 'Nombre de produits par type',
+      label: 'Number of Products by Type',
       data: this.productCounts,
       backgroundColor: 'rgba(75, 192, 192, 0.2)',
       borderColor: 'rgba(75, 192, 192, 1)',
@@ -156,5 +163,74 @@ fetchTotalProductsSoldInTransit(): void {
     }
   );
 }
+
+
+getOrderCounts(): void {
+  const statuses = ['PROCESSING', 'IN_TRANSIT', 'DELIVERED'];
+  this.chartData = [];
+
+  statuses.forEach(status => {
+    this.orderService.getOrderCountByStatus(status).subscribe(
+      count => {
+        // Ajouter le compteur au bon index du tableau en fonction de l'état de la commande
+        if (status === 'PROCESSING') {
+          this.chartData[0] = count;
+        } else if (status === 'IN_TRANSIT') {
+          this.chartData[1] = count;
+        } else if (status === 'DELIVERED') {
+          this.chartData[2] = count;
+        }
+
+        // Vérifier si toutes les données ont été récupérées avant de rendre le graphique
+        if (this.chartData.filter(data => data !== undefined).length === statuses.length) {
+          this.renderChart();
+        }
+      },
+      error => {
+        console.log('Une erreur s\'est produite lors de la récupération du nombre d\'ordres : ', error);
+      }
+    );
+  });
+}
+
+renderChart(): void {
+  const canvas = document.getElementById('orderChart') as HTMLCanvasElement;
+  const ctx = canvas.getContext('2d');
+  
+  new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels: ['PROCESSING', 'IN_TRANSIT', 'DELIVERED'],
+      datasets: [{
+        label: 'Order Count',
+        data: this.chartData,
+        backgroundColor: ['#ffcc00', '#D3899A', '#33cc33'],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false
+    }
+  });
+}
+
+
+
+openOrdersModal: boolean = false;
+
+openOrdersModall(): void {
+    this.openOrdersModal = true;
+    this.renderChart(); // Appeler la méthode pour rendre le graphique
+
+}
+
+closeModal(): void {
+    this.openOrdersModal = false;
+}
+
+
+
+
 
 }

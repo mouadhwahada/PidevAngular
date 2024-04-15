@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Chart } from 'chart.js';
 import { Product } from '../Models/Product';
@@ -7,75 +7,87 @@ import { ProductServiceService } from '../product-service.service';
 @Component({
   selector: 'app-shopback',
   templateUrl: './shopback.component.html',
-  styleUrls: ['./shopback.component.css',
-]
+  styleUrls: ['./shopback.component.css']
 })
-export class ShopbackComponent {
-discountPercentage: any;
-showStats() {
-throw new Error('Method not implemented.');
-}
+export class ShopbackComponent implements OnInit {
+  discountPercentage: any;
   productId: number;
-  showModal: boolean = false; // Variable pour contrôler l'affichage du modal
-
-
-
-editProduct(arg0: number) {
-throw new Error('Method not implemented.');
-}
-
+  showModal: boolean = false;
   productChart: any;
   productTypes: string[] = [];
   productCounts: number[] = [];
-
-  discountMode: boolean = false; // Variable de contrôle pour afficher le champ de saisie du rabais
-
-
-  
-    
-      constructor(private router:Router,
-        private productService: ProductServiceService) { }
-        
-    
-      products:Product[];
-      searchTerm: string;
-      productsLowStock: Product[];
-
-    
-      
-    
-      ngOnInit(){
-        this.productService.getProducts().subscribe(
-          res=>this.products=res);
-          this.productService.getProducts().subscribe(
-            res=>this.products=res);
-
-            this.getProductsLowStock();
-            this.productService.getProducts().subscribe(res => this.products = res);
-    this.productService.getProducts().subscribe(res => this.products = res);
-            this.getCountByType();
-      }
-
-        // Liste des produits
-  //products: Product[];
-
-  // Produit sélectionné pour afficher les détails
+  discountMode: boolean = false;
+  products: Product[] = [];
+  searchTerm: string;
+  productsLowStock: Product[];
   selectedProduct: Product | null = null;
+  pagedProducts: Product[] = [];
+  currentPage: number = 1;
+  pageSize: number = 8;
+  pages: number[] = [];
 
-  // Méthode pour afficher les détails du produit dans la modale
- 
+  constructor(private router: Router, private productService: ProductServiceService) { }
+
+  ngOnInit() {
+    this.loadProducts();
+    this.getCountByType();
+  }
+
+  loadProducts() {
+    this.productService.getProducts().subscribe(
+      (res: Product[]) => {
+        this.products = res;
+        this.setPage(1);
+      },
+      (error) => {
+        console.error('Error loading products:', error);
+      }
+    );
+  }
+
+  setPage(page: number) {
+    this.currentPage = page;
+    const startIndex = (page - 1) * this.pageSize;
+    const endIndex = Math.min(startIndex + this.pageSize, this.products.length);
+    this.pagedProducts = this.products.slice(startIndex, endIndex);
+    this.generatePagination();
+  }
+
+  generatePagination() {
+    const pageCount = Math.ceil(this.products.length / this.pageSize);
+    this.pages = [];
+    for (let i = 1; i <= pageCount; i++) {
+      this.pages.push(i);
+    }
+  }
+
+  onSearch(): void {
+    if (!this.searchTerm) {
+      this.loadProducts();
+      return;
+    }
+
+    this.productService.searchProductByName(this.searchTerm).subscribe(
+      (products: Product[]) => {
+        this.products = products;
+        this.setPage(1);
+      },
+      (error) => {
+        console.error('Error searching products:', error);
+      }
+    );
+  }
+
   getCountByType(): void {
     this.productService.countProductsByType().subscribe(
       response => {
         console.log('Count by type:', response);
         this.productTypes = response.map((item: any) => item.type);
         this.productCounts = response.map((item: any) => item.count);
-        
         this.drawChart();
       },
       error => {
         console.error('Error counting products by type:', error);
-        // Gérez les erreurs ici
       }
     );
   }
@@ -101,122 +113,69 @@ throw new Error('Method not implemented.');
           }
         }
       }
-    
     });
   }
 
-    
-
-
   showDetails(product: Product) {
-    this.selectedProduct = product;}
-  
-
-    removeProduct(idProduct: number) {
-      if (confirm('Êtes-vous sûr de vouloir supprimer ce produit ?')) {
-        this.productService.removeProduct(idProduct).subscribe(() => {
-          // Actualiser la liste des produits après la suppression
-          this.loadProducts();
-        });
-
-}
-
-}
-loadProducts() {
-  this.productService.getProducts().subscribe(
-    res => this.products = res
-  );
-}
-onSearch(): void {
-  if (!this.searchTerm) {
-    // Si le terme de recherche est vide, récupérez tous les produits
-    return this.loadProducts();
+    this.selectedProduct = product;
   }
 
-  // Recherche des produits par nom
-  this.productService.searchProductByName(this.searchTerm).subscribe(
-    (products: Product[]) => {
-      this.products = products;
-      console.log('Products found:', products);
-    },
-    (error) => {
-      console.error('Error searching products:', error);
+  removeProduct(idProduct: number) {
+    if (confirm('Are you sure you want to delete this product?')) {
+      this.productService.removeProduct(idProduct).subscribe(() => {
+        this.loadProducts();
+      });
     }
-  );
-}
-
-
-getProductsLowStock(): void {
-  this.productService.getProductsLowStock().subscribe(
-    (products: Product[]) => {
-      this.productsLowStock = products;
-      console.log(products)
-    },
-    (error) => {
-      console.error('Error fetching products with low stock:', error);
-    }
-  );
-
-
-}
-
-openModal(selectedProduct: Product): void {
-  this.selectedProduct = selectedProduct;
-  this.productId = selectedProduct.idProduct;
-  this.discountMode = false; // Initialiser le mode de rabais à false
-  this.showModal = true; // Afficher le modal
-}
-
-closeModal(): void {
-  this.selectedProduct = null;
-  this.discountMode = false; // Activer le mode de rabais
-  this.showModal = false; // Cacher le modal
-}
-
-
-
-showDiscountInput(product): void {
-  this.discountMode = true; // Activer le mode de rabais
-  this.showModal = true; 
-  this.selectedProduct = product;
-
- // this.productId = selectedProduct.idProduct;
-  // Afficher le modal
-}
-
-
-getImageUrl(product: Product): string {
-  if (product && product.image) {
-    return 'http://localhost/Uploads/ProductImages/' + product.image;
-  } else {
-    return ''; // Retourne une chaîne vide si product ou product.image est null
   }
-}
 
+  openModal(selectedProduct: Product): void {
+    this.selectedProduct = selectedProduct;
+    this.productId = selectedProduct.idProduct;
+    this.discountMode = false;
+    this.showModal = true;
+  }
 
+  closeModal(): void {
+    this.selectedProduct = null;
+    this.discountMode = false;
+    this.showModal = false;
+  }
 
+  showDiscountInput(product): void {
+    this.discountMode = true;
+    this.showModal = true;
+    this.selectedProduct = product;
+  }
 
-applyDiscount(selectedProduct): void {
-  if (!isNaN(this.discountPercentage)) {
-    if (this.discountPercentage >= 0) {
-      this.productService.applyDiscount(selectedProduct.idProduct, this.discountPercentage).subscribe(
-        (updatedProduct: Product) => {
-          const index = this.products.findIndex(product => product.idProduct === updatedProduct.idProduct);
-          if (index !== -1) {
-            this.products[index] = updatedProduct;
-            console.log(selectedProduct.idProduct) // Mettre à jour le produit dans la liste
-          }
-          this.closeModal(); // Fermer le modal après l'application de la réduction
-        },
-        (error) => {
-          console.error('Error applying discount:', error);
-        }
-      );
+  getImageUrl(product: Product): string {
+    if (product && product.image) {
+      return 'http://localhost/Uploads/ProductImages/' + product.image;
     } else {
-      console.error('Invalid discount percentage');
+      return '';
     }
-  } else {
-    console.error('Invalid input');
   }
-}
+
+  applyDiscount(selectedProduct): void {
+    if (!isNaN(this.discountPercentage)) {
+      if (this.discountPercentage >= 0) {
+        this.productService.applyDiscount(selectedProduct.idProduct, this.discountPercentage).subscribe(
+          (updatedProduct: Product) => {
+            const index = this.products.findIndex(product => product.idProduct === updatedProduct.idProduct);
+            if (index !== -1) {
+              this.products[index] = updatedProduct;
+              this.setPage(this.currentPage); // Update the page after applying discount
+            }
+            this.closeModal();
+          },
+          (error) => {
+            console.error('Error applying discount:', error);
+          }
+        );
+      } else {
+        console.error('Invalid discount percentage');
+      }
+    } else {
+      console.error('Invalid input');
+    }
+  }
 }

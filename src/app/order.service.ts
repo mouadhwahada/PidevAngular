@@ -92,5 +92,20 @@ export class OrderService {
 
 
 
+
+
+
+
+
+
+
+
+  getOrderCountByStatus(status: string): Observable<number> {
+    // Effectuer une requête HTTP GET pour récupérer le nombre d'ordres selon le statut
+    return this.http.get<number>(`${this.apiUrl}/count/${status}`);
+  }
+
+
+
 }
 
