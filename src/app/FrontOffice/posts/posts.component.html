@@ -1,0 +1,98 @@
+<!-- Favicons -->
+<link href="/assets/FrontOfficeAssets/img/favicon.png" rel="icon">
+<link href="/assets/FrontOfficeAssets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+<!-- Vendor CSS Files -->
+<link href="/assets/FrontOfficeAssets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/assets/FrontOfficeAssets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+<link href="/assets/FrontOfficeAssets/vendor/aos/aos.css" rel="stylesheet">
+<link href="/assets/FrontOfficeAssets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+<link href="/assets/FrontOfficeAssets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+<!-- Template Main CSS File -->
+<link href="/assets/FrontOfficeAssets/css/main.css" rel="stylesheet">
+
+<app-nav-bar-front></app-nav-bar-front>
+<br>
+
+
+
+<section id="chefs" class="chefs section-bg">
+  <div class="container" >
+
+    <div class="section-header">
+      <p><span>Posts</span></p>
+      <div class="row justify-content-center">
+        <div style="display: flex; justify-content: center;">
+          <input type="text" class="form-control mb-2" [(ngModel)]="searchTerm" placeholder="Search" (keyup)="filterPosts()" style="width: 50%;">
+        </div>
+        <div class="mt-2" style="width: 20%;">
+          <select class="form-select w-100" [(ngModel)]="sortBy" (change)="sortPosts()">
+            <option value="">Sort by views</option>
+            <option value="asc">Least Viewed</option>
+            <option value="des">Most Viewed</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="row gy-4">
+      <div class="col-lg-4 col-md-6 d-flex align-items-stretch" *ngFor="let post of getPagedData(posts)">
+        <a [routerLink]="['../post', post.id]">
+          <div class="chef-member">
+            <div class="member-img" style="height: 250px; width: 350px">
+              <img [src]="getImageUrl(post.imageName)" class="img-fluid" alt="" style="object-fit: cover; height: 100%; width: 100%;">
+              <div class="social">
+                <a href=""><i class="bi bi-twitter"></i></a>
+                <a href=""><i class="bi bi-facebook"></i></a>
+                <a href=""><i class="bi bi-instagram"></i></a>
+                <a href=""><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+            <div class="member-info">
+              <h4>{{ post.title }}</h4>
+              <p>{{ post.content }}</p>
+              <p><i class="bi-eye" style="font-size: 24px; color: rgb(92, 95, 89);"></i>&nbsp;<span
+                style="font-size: 15px;">{{post.nbViews}} Views</span></p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <span>Page {{ currentPage }} of {{ totalPages }}</span>
+      <div *ngIf="totalItems > itemsPerPage">
+        <button class="btn btn-secondary" (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+        <button class="btn btn-secondary" (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+      </div>
+    </div>
+
+
+  </div>
+
+</section><!-- End Chefs Section -->
+
+
+
+
+<app-footer-front></app-footer-front>
+<!-- Vendor JS Files -->
+<script src="/assets/FrontOfficeAssets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/FrontOfficeAssets/vendor/aos/aos.js"></script>
+<script src="/assets/FrontOfficeAssets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="/assets/FrontOfficeAssets/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="/assets/FrontOfficeAssets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="/assets/FrontOfficeAssets/vendor/php-email-form/validate.js"></script>
+
+<!-- Template Main JS File -->
+<script src="/assets/FrontOfficeAssets/js/main.js"></script>
+

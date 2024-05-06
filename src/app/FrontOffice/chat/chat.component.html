@@ -1,0 +1,131 @@
+<!-- Favicons -->
+<link href="/assets/FrontOfficeAssets/img/favicon.png" rel="icon">
+<link href="/assets/FrontOfficeAssets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+<!-- Vendor CSS Files -->
+<link href="/assets/FrontOfficeAssets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/assets/FrontOfficeAssets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+<link href="/assets/FrontOfficeAssets/vendor/aos/aos.css" rel="stylesheet">
+<link href="/assets/FrontOfficeAssets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+<link href="/assets/FrontOfficeAssets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+<!-- Template Main CSS File -->
+<link href="/assets/FrontOfficeAssets/css/main.css" rel="stylesheet">
+
+<app-nav-bar-front></app-nav-bar-front>
+<br>
+<br>
+<br>
+<br>
+
+<style>
+  .clickdisc {
+    background-color: rgba(128, 128, 128, 0.183);
+    border-radius: 10px;
+  }
+</style>
+
+<div class="main-wrapper">
+
+  <div class="page-content">
+    <div class="container mt-5">
+
+      <div class="row">
+        <h2>Chats</h2>
+        <div class="col-md-4 col-12 card-stacked" style="height: 500px; overflow: scroll;">
+          <div class="card shadow-line mb-3 chat">
+            <div class="chat-user-panel">
+              <div class="pb-3 d-flex flex-column navigation-mobile pagination-scrool chat-user-scroll">
+                <div (click)="clickUser(i)" class="chat-item d-flex "
+                     [ngClass]="{'clickdisc' : userClick?.id == i.id}" *ngFor="let i of users"
+                     style="justify-content: space-between; padding: 10px;">
+                  <div>
+                    <div class="d-flex">
+
+                      <div>
+                        <p style="font-weight: bold; margin-top: 10px; font-family: Arial, Helvetica, sans-serif;">
+                          {{i.userName}} </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex-shrink-0 margin-auto pl-2 pr-3">
+                    <div class="d-flex flex-column">
+                      <!-- <p class="text-muted text-right fs-13 mb-2">08:21</p> -->
+                      <span class="round badge badge-light-success margin-auto"
+                            *ngIf="countMessage(i.id) > 0"> counter: {{countMessage(i.id)}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8 col-12 card-stacked">
+          <div class="card shadow-line mb-3 chat chat-panel" style="height: 500px;">
+            <div *ngIf="userClick" style="height: 500px; overflow: scroll;" #myScrollContainer class="d-flex flex-row">
+              <div class="w-100 p-3">
+
+                <div *ngFor="let m of messages">
+
+                  <div *ngIf="m.recipient.id == this.userClick.id && m.sender.id == this.me">
+                    <div class="d-flex flex-row-reverse mb-2" *ngIf="m.sender.id == me">
+                      <div class="right-chat-message fs-13 mb-2">
+                        <div class="mb-0 mr-3 pr-4">
+                          <div class="d-flex flex-row">
+                            <div class="pr-2">{{m.content}}</div>
+                          </div>
+                          <small class="text-muted">{{ m.sentAt | date: 'short' }}</small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div *ngIf="m.recipient.id == this.me && m.sender.id == this.userClick.id">
+                    <div class="pr-4"></div>
+                    <div class="left-chat-message fs-13 mb-2" *ngIf="m.sender.id !== me">
+                      <div class="mb-0 mr-3 pr-4">
+                        <div class="d-flex flex-row">
+                          <div class="pr-2">{{m.content}}</div>
+                        </div>
+                        <small class="text-muted">{{ m.sentAt | date: 'short' }}</small>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+
+
+            <div *ngIf="userClick" class="chat-search pl-3 pr-3">
+              <div class="input-group">
+                <input type="text" [(ngModel)]="messageInput" (keyup.enter)="sendMessage()" class="form-control" placeholder="Write a message">
+                <button class="btn btn-danger" (click)="sendMessage()">Send</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<app-footer-front></app-footer-front>
+<!-- Vendor JS Files -->
+<script src="/assets/FrontOfficeAssets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/FrontOfficeAssets/vendor/aos/aos.js"></script>
+<script src="/assets/FrontOfficeAssets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="/assets/FrontOfficeAssets/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="/assets/FrontOfficeAssets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="/assets/FrontOfficeAssets/vendor/php-email-form/validate.js"></script>
+
+<!-- Template Main JS File -->
+<script src="/assets/FrontOfficeAssets/js/main.js"></script>

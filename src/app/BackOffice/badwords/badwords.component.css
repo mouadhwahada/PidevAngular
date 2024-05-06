@@ -1,0 +1,146 @@
+.layout-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.table-container {
+  max-width: 800px;
+  width: 100%;
+}
+
+.table {
+  width: 100%;
+}
+.layout-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.layout-container {
+  display: flex;
+  flex-grow: 1; /* Permet au conteneur de s'étendre pour remplir l'espace disponible */
+}
+
+.layout-page {
+  flex-grow: 1; /* Permet au contenu de remplir l'espace disponible */
+}
+
+.app-navbar-back {
+  /* Styles pour positionner le composant navbar en haut de son conteneur parent */
+  order: -1; /* Pour placer le composant navbar en premier dans l'ordre d'affichage */
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* Assure que le navbar reste au-dessus des autres éléments */
+  background-color: #fff; /* Vous pouvez ajuster la couleur selon votre design */
+  width: 100%; /* Assure que le navbar occupe toute la largeur */
+  
+}
+.app-footer-back {
+  /* Styles pour positionner le composant footer en bas de la page */
+  position: absolute;
+  bottom: 0;
+}
+
+/* Add some padding and border-radius to the table container */
+.table-container {
+  padding: 50px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Set the font size and weight for the table headers */
+.table th {
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #333;
+}
+
+/* Set the font size and color for the table body text */
+.table td {
+  font-size: 18px;
+  color: #666;
+}
+
+/* Add some hover effects to the table rows */
+.table tbody tr:hover {
+  background-color: #f5f5f5;
+}
+
+/* Add some spacing between the table cells */
+.table td,
+.table th {
+  padding: 12px 15px;
+}
+
+/* Remove the bottom border from the last row */
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Add some padding and border-radius to the search container */
+.search-container {
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Style the search input container */
+.search-input-container {
+  flex-grow: 1;
+  margin-right: 20px;
+}
+
+/* Style the search input */
+.search-input-container input {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Style the search input focus state */
+.search-input-container input:focus {
+  outline: none;
+  border-color: #333;
+}
+
+.btn-add-badword {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-add-badword:hover {
+  background-color: #3E8E41;
+}
+
+.btn-delete-badword {
+  background-color: #F44336;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-delete-badword:hover {
+  background-color: #E53935;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+}

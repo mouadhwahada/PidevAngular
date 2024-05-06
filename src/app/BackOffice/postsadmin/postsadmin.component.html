@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <app-navbar-back></app-navbar-back> 
+<div class="layout-wrapper layout-content-navbar">
+  <div class="layout-container">
+    <app-sidebar-back></app-sidebar-back>
+    <div class="layout-page">
+
+  <div class="container">
+      <div class="container mt-4">
+        <h1>Posts</h1>
+      </div>
+
+      <div style="display: flex;">
+        <div id="viewsChart"></div>
+        <div id="reactionsChart"></div>
+      </div>
+
+
+      <div class="search-container">
+        <div class="search-input-container">
+          <input type="text" [(ngModel)]="searchTerm" placeholder="Search" (keyup)="filterPosts()">
+        </div>
+        <div class="sort-select-container">
+          <select [(ngModel)]="sortBy" (change)="sortPosts()">
+            <option value="">Sort by views</option>
+            <option value="asc">Least Viewed</option>
+            <option value="des">Most Viewed</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Add this section for the table -->
+      <div class="table-container">
+        <table class="table table-bordered table-striped">
+          <thead>
+          <tr>
+            
+            <th>Title</th>
+            <th>Content</th>
+            <th>Created At</th>
+            
+            <th>Views</th>
+            <th>Author</th>
+            <th>Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let post of posts">
+           
+            <td>{{ post?.title }}</td>
+            <td>{{ post?.content }}</td>
+            <td>{{ post?.createdAt }}</td>
+            
+            <td>{{ post?.nbViews }}</td>
+            <td>{{ post?.author?.userName }}</td>
+            <td><button class="btn btn-details-post" [routerLink]="['../post', post.id]">Details</button>
+            <button class="btn btn-delete-post" (click)="deletePost(post.id)">Delete</button></td>
+          </tr>
+          </tbody>
+        </table>
+        <div class="pagination justify-content-end">
+          <button [disabled]="currentPage === 1" (click)="previousPage()" class="btn btn-pagination">Previous</button>
+          <span>{{ currentPage }} / {{ totalPages }}</span>
+          <button [disabled]="currentPage === totalPages" (click)="nextPage()" class="btn btn-pagination">Next</button>
+        </div>
+        
+      </div>
+      <app-footer-back></app-footer-back>
+    </div>
+  </div>
+</div>

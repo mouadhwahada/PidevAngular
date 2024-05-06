@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <app-navbar-back></app-navbar-back> 
+<div class="layout-wrapper layout-content-navbar">
+  <div class="layout-container">
+    <app-sidebar-back></app-sidebar-back>
+    <div class="layout-page">
+      
+      <div class="container">
+        <div class="container mt-4">
+          <h1>Badwords</h1>
+        </div>
+
+        <div class="mb-3">
+          <div class="search-input-container">
+            <input type="text" [(ngModel)]="newBadWord" placeholder="Enter a new bad word">
+            <button class="btn btn-add-badword" (click)="addBadWord()">Add Bad Word</button>
+          </div>
+        </div>
+        
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Word</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let badWord of getPaginatedBadWords()">
+              <td>{{ badWord.word }}</td>
+              <td>
+                <button class="btn btn-delete-badword" (click)="deleteBadWord(badWord.id)">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="pagination justify-content-end">
+          <button [disabled]="currentPage === 1" (click)="previousPage()" class="btn btn-pagination">Previous</button>
+          <span>{{ currentPage }} / {{ totalPages }}</span>
+          <button [disabled]="currentPage === totalPages" (click)="nextPage()" class="btn btn-pagination">Next</button>
+        </div>
+      </div>
+
+      <app-footer-back></app-footer-back>
+    </div>
+  </div>
+</div>
+
+<app-footer-back></app-footer-back>

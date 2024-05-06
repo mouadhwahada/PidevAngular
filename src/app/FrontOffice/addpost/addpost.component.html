@@ -1,0 +1,99 @@
+<!-- Favicons -->
+<link href="/assets/FrontOfficeAssets/img/favicon.png" rel="icon">
+<link href="/assets/FrontOfficeAssets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+    rel="stylesheet">
+
+<!-- Vendor CSS Files -->
+<link href="/assets/FrontOfficeAssets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/assets/FrontOfficeAssets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+<link href="/assets/FrontOfficeAssets/vendor/aos/aos.css" rel="stylesheet">
+<link href="/assets/FrontOfficeAssets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+<link href="/assets/FrontOfficeAssets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+<!-- Template Main CSS File -->
+<link href="/assets/FrontOfficeAssets/css/main.css" rel="stylesheet">
+
+<app-nav-bar-front></app-nav-bar-front>
+
+<br><br><br>
+
+<section id="chefs" class="chefs section-bg">
+    <div class="row justify-content-center">
+        <div class="col-xl-8 order-xl-1">
+            <div class="card bg-light shadow">
+                <div class="card-header bg-white border-0">
+                    <div class="row align-items-center">
+                        <div class="col-8">
+                            <h3 class="mb-0">New Post</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form #addPostForm="ngForm" (ngSubmit)="onSubmit(addPostForm)">
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <label>
+                                    <h6>Title</h6>
+                                </label>
+                                <input type="text" class="form-control form-control-alternative"
+                                       placeholder="Add the post title" name="title" id="title"
+                                    required [(ngModel)]="title">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="pl-lg-4">
+                            <div class="form-group">
+                                <label>
+                                    <h6>Content</h6>
+                                </label>
+                                <textarea rows="3" class="form-control form-control-alternative"
+                                    placeholder="Add the post content" name="content" id="content" required
+                                    [(ngModel)]="content">
+                                </textarea>
+                            </div>
+                        </div>
+
+                    </form>
+                    <hr>
+                    <div class="card-header bg-white border-0">
+                        <div class="row align-items-center">
+                            <div class="col-8">
+                                <a [routerLink]="['..']" class="btn btn-danger ">Back</a>
+                            </div>
+                            <div class="col-4 text-right">
+                                <button class="btn btn-success" type="submit"
+                                    (click)="onSubmit(addPostForm)">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <p *ngIf="successMessage" style="color:green;">{{ successMessage }}</p>
+                    <p *ngIf="errorMessage" style="color:red;">{{ errorMessage }}</p>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+
+
+<app-footer-front></app-footer-front>
+<!-- Vendor JS Files -->
+<script src="/assets/FrontOfficeAssets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/FrontOfficeAssets/vendor/aos/aos.js"></script>
+<script src="/assets/FrontOfficeAssets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="/assets/FrontOfficeAssets/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="/assets/FrontOfficeAssets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="/assets/FrontOfficeAssets/vendor/php-email-form/validate.js"></script>
+
+<!-- Template Main JS File -->
+<script src="/assets/FrontOfficeAssets/js/main.js"></script>

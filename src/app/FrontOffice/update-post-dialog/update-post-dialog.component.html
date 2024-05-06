@@ -1,0 +1,19 @@
+<div *ngIf="showDialog">
+  <div class="dialog">
+    <h1>Update Post</h1>
+    <p>
+      <label>ID:</label>
+      <input [(ngModel)]="post.id" disabled>
+    </p>
+    <p>
+      <label>Title:</label>
+      <input [(ngModel)]="post.title" required>
+    </p>
+    <p>
+      <label>Content:</label>
+      <input [(ngModel)]="post.content" required>
+    </p>
+    <button (click)="onUpdatePost()">Update</button>
+    <button (click)="onCloseDialog()">Cancel</button>
+  </div>
+</div>
